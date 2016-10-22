@@ -1,0 +1,7 @@
+body{
+	text-align: center;
+}
+.line{
+	display: inline-block;
+	vertical-align: middle;
+}
