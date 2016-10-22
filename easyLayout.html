@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <title>Complex Layout - jQuery EasyUI Demo</title>
     <link href="css/common.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="easyui/demo/demo.css" />
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js" ></script>
 </head>
 <body>
- fsd
+ 	<input id="combobox" class="easyui-combobox">
     <script>
     	$(function(){
-    		var foo = {
-    			att:"a"
-    		};
-    		console.log(foo.att);
-    		console.log(foo['att']);
-    		console.log(foo['a' + 't' + 't'])
+    		var value = $("#combobox").combobox({
+    		});
     	})
     </script>
 </body>
