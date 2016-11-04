@@ -8,17 +8,65 @@
 		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<title></title>
 		<style>
-			.filterTable{
+			.filterLine{
+				padding:10px 0;
+				border-bottom: 1px solid #ddd;
+				text-align: left;
+			}
+			.filterLine .title{
+				display: inline-block;
+				vertical-align: middle;
+				text-align: left;
+				width:4%
+			}
+			.filterLine .detail{
+				display: inline-block;
+				vertical-align: middle;
+				text-align: left;
+				width: 95%;
+			}
+			.filterLine .filterTable{
 				width:100%;
 				text-align: center;
 			}
-			.filterTable tr td a{
+			.filterLine .filterTable tr td a{
 				cursor: pointer;
 			}
-			.filterTable tr td a:hover{
+			.filterLine .filterTable tr td a:hover{
 				cursor: pointer;
 				text-decoration: none;
 				color: #D9534F;
+			}
+			.block{
+				color: black;
+				background: white;
+				padding: 4px 5px;
+				border: 1px solid #ddd;
+				cursor: pointer;
+				margin: 0 auto;
+				float: left;
+			}
+			.blockActive{
+				color: white;
+				background: red;
+			}
+			.block:hover{
+				border: 1px solid red;
+			}
+			.pageButton{
+				padding: 5px 10px;
+				float: left;
+				background: white;
+				color: #ddd;
+				border: 1px solid #ddd;
+				width: 50px;
+				cursor: pointer;
+			}
+			.prevButton{
+				border-left: 1px solid #ddd;
+			}
+			.nextButton{
+				border-right: 1px solid #ddd;
 			}
 		</style>
 	</head>
@@ -29,11 +77,11 @@
 				text-align: left;">
 				<font color="red">存储卡</font>&nbsp;商品筛选&nbsp;&nbsp;&nbsp;&nbsp;共46485个商品
 			</div>
-			<div style="padding:10px 0;border-bottom: 1px solid #ddd;text-align: left;">
-				<div style="display: inline-block;vertical-align: middle;text-align: left;width:4%">
+			<div class="filterLine">
+				<div class="title">
 					品牌：
 				</div>
-				<div style="display: inline-block;vertical-align: middle;text-align: left;width: 95%;">
+				<div class="detail">
 					<table class="filterTable">
 						<tr>
 							<td><a>金士顿</a></td>
@@ -58,7 +106,38 @@
 					</table>
 				</div>
 			</div>
-			<div style="background: #f1f1f1;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;padding:5px 0;"
+			<div class="filterLine">
+				<div class="title">价格</div>
+				<div class="detail">
+					<table class="filterTable">
+						<tr>
+							<td><a>100</a></td>
+							<td><a>100</a></td>
+							<td><a>100</a></td>
+							<td><a>100</a></td>
+							<td><a>100</a></td>
+							<td><a>100</a></td>
+							<td><a>100</a></td>
+							<td><a>100</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div style="background: #f1f1f1;border-bottom: 1px solid #ddd;height:40px;padding-top:4px;">
+				<div style="display: inline-block;text-align: left;margin-left: 10px;float: left;">
+					<span class="block blockActive">销量</span>
+					<span class="block">价格</span>
+					<span class="block">评论数</span>
+					<span class="block">上架时间</span>
+				</div>
+				<div style="display: inline-block;float:right;margin-right: 10px;">
+					<div style="display: inline-block;float: left;padding-top: 8px;">1&nbsp;/&nbsp;70&nbsp;&nbsp;</div>			
+					<div style="display: inline-block;">
+						<span class="pageButton">&lt;</span>
+						<span class="pageButton">&gt;</span>
+					</div>					
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
