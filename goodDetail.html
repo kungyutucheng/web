@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品详情</title>
+		<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+		<style type="text/css">
+			#listDiv{
+				width: auto;
+			}
+			#prevImage,#nextImage{
+				display: inline-block;
+			}
+			#prevImage img,#nextImage img{
+				width: 10px;
+				height: auto;
+				cursor: pointer;	
+			}
+			.imageList{
+				display: inline-block;
+				list-style-type: none;
+				padding: 0;
+			}
+			.imageList .item{
+				display: inline-block;
+			}
+			.imageList .item img{
+				border: 2px solid transparent;
+				width: 50px;
+				height: 50px;
+				cursor: pointer;
+			}
+			.imageList .item img:hover{
+				border: 2px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div id="image" style="width: 330px;text-align: center;display: inline-block;float: left;">
+				<img src="img/storeCard.jpg" style="width: 300px;" />
+				<div id="listDiv">
+					<div id="prevImage">
+						 <a><img src="img/storeCard.jpg"/></a>
+					</div>
+					<ul class="imageList">
+						<li class="item">
+							<img src="img/storeCard.jpg"/>
+						</li>
+						<li class="item">
+							<img src="img/storeCard.jpg"/>
+						</li>
+						<li class="item">
+							<img src="img/storeCard.jpg"/>
+						</li>
+						<li class="item">
+							<img src="img/storeCard.jpg"/>
+						</li>
+						<li class="item">
+							<img src="img/storeCard.jpg"/>
+						</li>
+						
+					</ul>
+					<div id="nextImage">
+						<a><img src="img/storeCard.jpg"/></a>
+					</div>
+				</div>
+			</div>
+			<div id="detailMsg" style="width: 600px;text-align: left;display: inline-block;float: left;">
+				<span class="title">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速80MB/s</span>
+				<span class="msgBlock">
+					价格：<span class="price"></span><br />
+					信息: <span class="msg"></span>
+				</span>
+			</div>
+		</div>
+	</body>
+</html>

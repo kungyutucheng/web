@@ -68,6 +68,128 @@
 			.nextButton{
 				border-right: 1px solid #ddd;
 			}
+			.gl{
+				list-style-type: none;
+				height: auto;
+				width: auto;
+				margin-top:10px;
+				padding: 0;
+				text-align: left;
+			}
+			.gl .item{
+				display: inline-block;
+				width:223px;
+				height: auto;
+				padding: 10px;
+				border: 1px solid transparent;
+				
+			}
+			.gl .item a img{
+				width:200px;
+				cursor: pointer;
+			}
+			.gl .item:hover{
+				border: 1px solid #EDEDED;
+				box-shadow: 1px 1px 2px #ddd;
+			}
+			.gl .item .price{
+				text-align: left;
+				color: red;
+				font-size: 20px;
+			}
+			.gl .item .price:before{
+				content: "¥";
+			}
+			.gl .item .title{
+				text-align: left;
+				font-size: 14px;
+				margin-top: 10px;
+				cursor: pointer;
+			}
+			.gl .item .title a{
+				color: #A7A7A7;
+			}
+			.gl .item .title a:hover{
+				text-decoration: none;
+				color: red;
+			}
+			.gl .item .commnetNum{
+				text-align: left;
+				color: #a7a7a7;
+				font-size: 14px;
+				margin-top: 10px;
+			}
+			.gl .item .commnetNum .num{
+				color: #005AA0;
+			}
+			.gl .item .commnetNum .num:before,.gl .item .commnetNum .num:after{
+				content: " ";
+			}
+			.gl .item .owner{
+				text-align: left;
+				color: #A7A7A7;
+				font-size: 14px;
+				margin-top: 10px;
+			}
+			.gl .item .addIntoCartBtn{
+				text-align: center;
+				color: red;
+				border: 1px solid #DDDDDD;
+				padding:5px 10px;
+				margin: 20px 0;
+				cursor: pointer;
+			}
+			.gl .item .addIntoCartBtn:hover{
+				border: 1px solid red;
+			}
+			.gl .item .addIntoCartBtn a{
+				text-decoration: none;
+			}
+			.page{
+				list-style-type: none;
+			}
+			.page li{
+				display: inline-block;
+			}
+			.page li a{
+				background: #F6F6F6;
+				color: #333333;
+				border: 1px solid #ddd;
+				padding: 10px 14px;
+				font-size: 16px;
+				cursor: pointer;
+				margin: 0px 1px;
+			}
+			.page li a:hover{
+				text-decoration: none;
+				color: red;
+			}
+			.page li .active{
+				cursor: default;
+				background: transparent;
+				border: 0px solid transparent;
+			}
+			.page li .active:hover{
+				color: #333;
+			}
+			.page li .disable{
+				color: #eee;
+				background: transparent;
+				cursor: default;
+			}
+			.page li a.disable:hover{
+				color: #eee;
+			}
+			.input-txt{
+				width: 40px;
+				height: 40px;
+				line-height: 40px;
+				margin: 0 3px;
+				font-size: 14px;
+				text-align: center;
+				border: 1px solid #ccc;
+				padding: 3px;
+			}
 		</style>
 	</head>
 	<body>
@@ -136,6 +258,93 @@
 						<span class="pageButton">&lt;</span>
 						<span class="pageButton">&gt;</span>
 					</div>					
+				</div>
+			</div>
+			<div>
+				<ul class="gl">
+					<li class="item">
+						<a><img src="img/storeCard.jpg" /></a>
+						<div class="price">115</div>
+						<div class="title"><a>fhsafisdfi</a></div>
+						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
+						<div class="owner">京东自营</div>
+						<div class="addIntoCartBtn">
+							<a>加入购物车</a>
+						</div>
+					</li>
+					<li class="item">
+						<a><img src="img/storeCard.jpg" /></a>
+						<div class="price">115</div>
+						<div class="title"><a>fhsafisdfi</a></div>
+						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
+						<div class="owner">京东自营</div>
+						<div class="addIntoCartBtn">
+							<a>加入购物车</a>
+						</div>
+					</li>
+					<li class="item">
+						<a><img src="img/storeCard.jpg" /></a>
+						<div class="price">115</div>
+						<div class="title"><a>fhsafisdfi</a></div>
+						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
+						<div class="owner">京东自营</div>
+						<div class="addIntoCartBtn">
+							<a>加入购物车</a>
+						</div>
+					</li>
+					<li class="item">
+						<a><img src="img/storeCard.jpg" /></a>
+						<div class="price">115</div>
+						<div class="title"><a>fhsafisdfi</a></div>
+						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
+						<div class="owner">京东自营</div>
+						<div class="addIntoCartBtn">
+							<a>加入购物车</a>
+						</div>
+					</li>
+					<li class="item">
+						<a><img src="img/storeCard.jpg" /></a>
+						<div class="price">115</div>
+						<div class="title"><a>fhsafisdfi</a></div>
+						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
+						<div class="owner">京东自营</div>
+						<div class="addIntoCartBtn">
+							<a>加入购物车</a>
+						</div>
+					</li>
+					<li class="item">
+						<a><img src="img/storeCard.jpg" /></a>
+						<div class="price">115</div>
+						<div class="title"><a>fhsafisdfi</a></div>
+						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
+						<div class="owner">京东自营</div>
+						<div class="addIntoCartBtn">
+							<a>加入购物车</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<div style="display: inline-block;">
+					<ul class="page">
+						<li><a class="disable">&lt;上一页</a></li>
+						<li><a class="active">1</a></li>
+						<li><a>2</a></li>
+						<li><a>2</a></li>
+						<li><a>2</a></li>
+						<li><a>2</a></li>
+						<li><a>下一页&gt;</a></li>
+						
+					</ul>
+				</div>
+				<div style="display: inline-block;margin-bottom: 50px;">
+					<div style="display: inline-block;">&nbsp;&nbsp;共<font style="font-weight: bold;">40</font>&nbsp;&nbsp;</div>
+					<div style="display: inline-block;">
+						到第<input class="input-txt" />页
+					</div>
+					<div style="display: inline-block;">
+						<a style="background: #F6F6F6;padding: 10px;border: 1px solid #ddd;color: #333333;font-size: 16px;text-decoration: none;cursor: pointer;">确定</a>
+					</div>
 				</div>
 			</div>
 		</div>
