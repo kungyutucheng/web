@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="asserts/jquery/jquery.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="asserts/bootstrap/bootstrap.min.css"/>
+		<title>购物车</title>
+		<style type="text/css">
+			.cart-head{
+				background: #F3F3F3;
+				border-top: 1px solid #E9E9E9;
+				border-bottom: 1px solid #E9E9E9;
+				width: 100%;
+			}
+			.cart-body{
+				width: 100%;
+			}
+			.item{
+				width: 100%;
+				border-left:1px #ddd solid;
+				border-right: 1px #ddd solid;
+				border-bottom: 1px #ddd solid;
+				background: #FFF4E8;
+			}
+			.column{
+				display: inline-block;
+				padding-top: 15px;
+				padding-bottom: 15px;
+			}
+			.cart-checkbox{
+				width:5%;
+			}
+			.cart-good{
+				width:33%;
+			}
+			.cart-prop{
+				width:15%;
+			}
+			.cart-price{
+				width:10%;
+			}
+			.cart-num{
+				width:13%;
+			}
+			.cart-item-total{
+				width: 10%;
+			}
+			.cart-oper{
+				width:10%;
+			}
+			.cart-checkbox,
+			.cart-prop,
+			.cart-price,
+			.cart-num,
+			.cart-item-total,
+			.cart-oper{
+				text-align: center;
+			}
+			.cart-good{
+				text-align: left;
+			}
+			.cart-good .cart-good-pic{
+				cursor: pointer;
+				display: inline-block;
+				float: left;
+				margin-right: 10px;
+			}
+			.cart-good .cart-good-name{
+				text-decoration: none;
+				cursor: pointer;
+				color: #000;
+			}
+			.cart-good .cart-good-name:hover{
+				color: red;
+			}
+			.cart-oper .cart-del{
+				text-decoration: none;
+				cursor: pointer;
+			}
+			.cart-oper .cart-del:hover{
+				color: red;
+			}
+			.oper-bar{
+				width: 100%;
+				border: 1px solid #ddd;
+				vertical-align: middle;
+				margin: 20px 0;
+			}
+			.oper-bar .del-selected,
+			.oper-bar .del-all,
+			.oper-bar .sumup,
+			.oper-bar .pay-div{
+				display: inline-block;
+			}
+			.oper-bar .sumup .total-value{
+				color: red;
+				font-weight: bold;
+			}
+			.oper-bar .sumup .total-value:before{
+				content: :"￥";
+			}
+			.oper-bar .pay-div{
+				vertical-align: middle;
+			}
+			.oper-bar .pay-div .pay-btn{
+				height: 100%;
+				color: white;
+				font-weight: bold;
+				padding:10px 10px;
+				text-align: center;
+				font-size: large;
+				text-decoration: none;
+				background: #E64346;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="cart-head">
+				<div class="column cart-checkbox">
+					<input type="checkbox" />
+				</div>
+				<div class="column cart-good">商品</div>
+				<div class="column cart-prop"></div>
+				<div class="column cart-price">单价（元）</div>
+				<div class="column cart-num">数量</div>
+				<div class="column cart-item-total">小计</div>
+				<div class="column cart-oper">操作</div>
+			</div>
+			<div class="cart-body">
+				<div class="item">
+					<div class="column cart-checkbox">
+						<input type="checkbox" />
+					</div>
+					<div class="column cart-good" style="vertical-align: middle;">
+						<a class="cart-good-pic"><img src="img/56b16594Nb8807f03.jpg"/></a>
+						<a class="cart-good-name">（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB </a>
+					</div>
+					<div class="column cart-prop">
+						<div>颜色：黑色</div>
+						<div>尺码：80M/s</div>
+					</div>
+					<div class="column cart-price">123</div>
+					<div class="column cart-num">
+						
+					</div>
+					<div class="column cart-item-total">123</div>
+					<div class="column cart-oper">
+						<a class="cart-del">删除</a>
+					</div>
+				</div>
+			</div>
+			<div class="oper-bar">
+				<div class="del-selected">删除所选项</div>
+				<div class="del-all">删除全部</div>
+				<div class="sumup">总计：<span class="total-value">123</span></div>
+				<div class="pay-div">
+					<a class="pay-btn">去结算</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
