@@ -81,36 +81,55 @@
 				color: red;
 			}
 			.oper-bar{
+				height: 50px;
 				width: 100%;
 				border: 1px solid #ddd;
-				vertical-align: middle;
 				margin: 20px 0;
+				position: relative;
 			}
 			.oper-bar .del-selected,
-			.oper-bar .del-all,
 			.oper-bar .sumup,
 			.oper-bar .pay-div{
 				display: inline-block;
+				height: 100%;
+				margin: 0px 10px;
+				cursor: pointer;
+			}
+			.oper-bar .del-selected:hover{
+				color: red;
+			}
+			.oper-bar .del-selected{
+				position: absolute;
+				left: 10px;
+				padding-top: 15px;
+			}
+			.oper-bar .sumup{
+				position: absolute;
+				right: 180px;
+				padding-top: 15px;
 			}
 			.oper-bar .sumup .total-value{
 				color: red;
 				font-weight: bold;
+				
 			}
 			.oper-bar .sumup .total-value:before{
-				content: :"￥";
+				content:"￥";
 			}
 			.oper-bar .pay-div{
-				vertical-align: middle;
+				
 			}
 			.oper-bar .pay-div .pay-btn{
 				height: 100%;
 				color: white;
 				font-weight: bold;
-				padding:10px 10px;
+				padding:10px 30px;
 				text-align: center;
 				font-size: large;
 				text-decoration: none;
 				background: #E64346;
+				right: 0;
+				position: absolute;
 			}
 		</style>
 	</head>
@@ -118,7 +137,7 @@
 		<div class="container">
 			<div class="cart-head">
 				<div class="column cart-checkbox">
-					<input type="checkbox" />
+					<input type="checkbox" id="select-all"/>
 				</div>
 				<div class="column cart-good">商品</div>
 				<div class="column cart-prop"></div>
@@ -130,7 +149,7 @@
 			<div class="cart-body">
 				<div class="item">
 					<div class="column cart-checkbox">
-						<input type="checkbox" />
+						<input type="checkbox" name="item-checkbox" onchange="itemSelected()"/>
 					</div>
 					<div class="column cart-good" style="vertical-align: middle;">
 						<a class="cart-good-pic"><img src="img/56b16594Nb8807f03.jpg"/></a>
@@ -152,12 +171,41 @@
 			</div>
 			<div class="oper-bar">
 				<div class="del-selected">删除所选项</div>
-				<div class="del-all">删除全部</div>
 				<div class="sumup">总计：<span class="total-value">123</span></div>
 				<div class="pay-div">
 					<a class="pay-btn">去结算</a>
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript">
+			$(function(){
+				//点击全选选中所有小项
+				$("#select-all").change(function(){
+					if($(this).is(":checked")){
+						$("[name='item-checkbox']").each(function(){
+							$(this).prop("checked",true);
+						});
+					}else{
+						$("[name='item-checkbox']").each(function(){
+							$(this).prop("checked",false);
+						});
+					}
+				});
+			});
+			//若是选中了所有小项，那么同时选中全选
+			function itemSelected(){
+				var flag = true;
+				$("[name='item-checkbox']").each(function(){
+					if(!$(this).is(":checked")){
+						flag = false;
+					}
+				});
+				if(flag){
+					$("#select-all").prop("checked",true);
+				}else{
+					$("#select-all").prop("checked",false);
+				}
+			}
+		</script>
 	</body>
 </html>
