@@ -1,129 +1,157 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
-		<script type="text/javascript" src="asserts/jquery/jquery.min.js" ></script>
-		<link rel="stylesheet" type="text/css" href="asserts/bootstrap/bootstrap.min.css"/>
+		<script type="text/javascript" src="asserts/jquery/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="asserts/bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<script src="asserts/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 		<title>购物车</title>
 		<style type="text/css">
-			.cart-head{
+			.cart-head {
 				background: #F3F3F3;
 				border-top: 1px solid #E9E9E9;
 				border-bottom: 1px solid #E9E9E9;
 				width: 100%;
 			}
-			.cart-body{
+			
+			.cart-body {
 				width: 100%;
 			}
-			.item{
+			
+			.item {
 				width: 100%;
-				border-left:1px #ddd solid;
+				border-left: 1px #ddd solid;
 				border-right: 1px #ddd solid;
 				border-bottom: 1px #ddd solid;
 				background: #FFF4E8;
 			}
-			.column{
+			
+			.column {
 				display: inline-block;
 				padding-top: 15px;
 				padding-bottom: 15px;
 			}
-			.cart-checkbox{
-				width:5%;
+			
+			.cart-checkbox {
+				width: 5%;
 			}
-			.cart-good{
-				width:33%;
+			
+			.cart-good {
+				width: 33%;
 			}
-			.cart-prop{
-				width:15%;
+			
+			.cart-prop {
+				width: 15%;
 			}
-			.cart-price{
-				width:10%;
-			}
-			.cart-num{
-				width:13%;
-			}
-			.cart-item-total{
+			
+			.cart-price {
 				width: 10%;
 			}
-			.cart-oper{
-				width:10%;
+			
+			.cart-num {
+				width: 13%;
 			}
+			
+			.cart-item-total {
+				width: 10%;
+			}
+			
+			.cart-oper {
+				width: 10%;
+			}
+			
 			.cart-checkbox,
 			.cart-prop,
 			.cart-price,
 			.cart-num,
 			.cart-item-total,
-			.cart-oper{
+			.cart-oper {
 				text-align: center;
 			}
-			.cart-good{
+			
+			.cart-good {
 				text-align: left;
 			}
-			.cart-good .cart-good-pic{
+			
+			.cart-good .cart-good-pic {
 				cursor: pointer;
 				display: inline-block;
 				float: left;
 				margin-right: 10px;
 			}
-			.cart-good .cart-good-name{
+			
+			.cart-good .cart-good-name {
 				text-decoration: none;
 				cursor: pointer;
 				color: #000;
 			}
-			.cart-good .cart-good-name:hover{
+			
+			.cart-good .cart-good-name:hover {
 				color: red;
 			}
-			.cart-oper .cart-del{
+			
+			.cart-oper .cart-del {
 				text-decoration: none;
 				cursor: pointer;
 			}
-			.cart-oper .cart-del:hover{
+			
+			.cart-oper .cart-del:hover {
 				color: red;
 			}
-			.oper-bar{
+			
+			.oper-bar {
 				height: 50px;
 				width: 100%;
 				border: 1px solid #ddd;
 				margin: 20px 0;
 				position: relative;
 			}
+			
 			.oper-bar .del-selected,
 			.oper-bar .sumup,
-			.oper-bar .pay-div{
+			.oper-bar .pay-div {
 				display: inline-block;
 				height: 100%;
 				margin: 0px 10px;
 				cursor: pointer;
 			}
-			.oper-bar .del-selected:hover{
+			
+			.oper-bar .del-selected:hover {
 				color: red;
 			}
-			.oper-bar .del-selected{
+			
+			.oper-bar .del-selected {
 				position: absolute;
 				left: 10px;
 				padding-top: 15px;
 			}
-			.oper-bar .sumup{
+			
+			.oper-bar .sumup {
 				position: absolute;
 				right: 180px;
-				padding-top: 15px;
+				padding-top: 10px;
 			}
-			.oper-bar .sumup .total-value{
+			
+			.oper-bar .sumup .total-value {
 				color: red;
 				font-weight: bold;
-				
+				font-size: large;
 			}
-			.oper-bar .sumup .total-value:before{
-				content:"￥";
+			
+			.oper-bar .sumup .total-value:before {
+				content: "￥";
 			}
-			.oper-bar .pay-div{
-				
-			}
-			.oper-bar .pay-div .pay-btn{
+			
+			.oper-bar .pay-div {}
+			
+			.oper-bar .pay-div .pay-btn {
 				height: 100%;
 				color: white;
 				font-weight: bold;
-				padding:10px 30px;
+				padding: 10px 30px;
 				text-align: center;
 				font-size: large;
 				text-decoration: none;
@@ -133,11 +161,12 @@
 			}
 		</style>
 	</head>
+
 	<body>
 		<div class="container">
 			<div class="cart-head">
 				<div class="column cart-checkbox">
-					<input type="checkbox" id="select-all"/>
+					<input type="checkbox" id="select-all" />
 				</div>
 				<div class="column cart-good">商品</div>
 				<div class="column cart-prop"></div>
@@ -149,10 +178,11 @@
 			<div class="cart-body">
 				<div class="item">
 					<div class="column cart-checkbox">
-						<input type="checkbox" name="item-checkbox" onchange="itemSelected()"/>
+						<input type="checkbox" name="item-checkbox" onchange="itemSelected()" />
+						<span class="hide">43</span>
 					</div>
 					<div class="column cart-good" style="vertical-align: middle;">
-						<a class="cart-good-pic"><img src="img/56b16594Nb8807f03.jpg"/></a>
+						<a class="cart-good-pic"><img src="img/56b16594Nb8807f03.jpg" /></a>
 						<a class="cart-good-name">（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB </a>
 					</div>
 					<div class="column cart-prop">
@@ -161,16 +191,20 @@
 					</div>
 					<div class="column cart-price">123</div>
 					<div class="column cart-num">
-						
+						<div class="input-group" style="width: 140px;float: left;position: absolute;">
+						  	<span class="input-group-addon" style="cursor: pointer;" onclick="subNum('num');">-</span>
+						  	<input id="num" type="text" class="form-control" value="1" style="height: 40px;text-align: center;" onblur="getNumFromInput(this);">
+						  	<span class="input-group-addon" style="cursor: pointer;" onclick="addNum('num');">+</span>
+						</div>
 					</div>
 					<div class="column cart-item-total">123</div>
 					<div class="column cart-oper">
-						<a class="cart-del">删除</a>
+						<a class="cart-del" onclick="deleteItem(this);">删除</a>
 					</div>
 				</div>
 			</div>
 			<div class="oper-bar">
-				<div class="del-selected">删除所选项</div>
+				<div class="del-selected" onclick="deleteSelected();">删除所选项</div>
 				<div class="sumup">总计：<span class="total-value">123</span></div>
 				<div class="pay-div">
 					<a class="pay-btn">去结算</a>
@@ -178,34 +212,69 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			$(function(){
+			$(function() {
 				//点击全选选中所有小项
-				$("#select-all").change(function(){
-					if($(this).is(":checked")){
-						$("[name='item-checkbox']").each(function(){
-							$(this).prop("checked",true);
+				$("#select-all").change(function() {
+					if($(this).is(":checked")) {
+						$("[name='item-checkbox']").each(function() {
+							$(this).prop("checked", true);
 						});
-					}else{
-						$("[name='item-checkbox']").each(function(){
-							$(this).prop("checked",false);
+					} else {
+						$("[name='item-checkbox']").each(function() {
+							$(this).prop("checked", false);
 						});
 					}
 				});
 			});
 			//若是选中了所有小项，那么同时选中全选
-			function itemSelected(){
+			function itemSelected() {
 				var flag = true;
-				$("[name='item-checkbox']").each(function(){
-					if(!$(this).is(":checked")){
+				$("[name='item-checkbox']").each(function() {
+					if(!$(this).is(":checked")) {
 						flag = false;
 					}
 				});
-				if(flag){
-					$("#select-all").prop("checked",true);
-				}else{
-					$("#select-all").prop("checked",false);
+				if(flag) {
+					$("#select-all").prop("checked", true);
+				} else {
+					$("#select-all").prop("checked", false);
 				}
+			}
+
+			//删除小项
+			function deleteItem(obj) {
+				var goodName = $(obj).parent().prev().prev().prev().prev().prev().children()[1];
+				var title = "<div style='width:200px'>确定删除商品'" + goodName.innerText + "'?</div>";
+				layer.confirm(title, {
+					btn: ['确定', '取消']
+				}, function() {
+					//todo删除的服务器操作
+				}, function(index) {
+					layer.close(index);
+				});
+				
+			}
+			
+			//删除选中的项
+			function deleteSelected(){
+				layer.confirm("确定删除选中项？", {
+					btn: ['确定', '取消']
+				}, function() {
+					var ids = "";
+					$("[name='item-checkbox'").each(function(){
+						if($(this).is(":checked")){
+							ids += $(this).next().text() + ",";
+						}
+					});
+					ids = ids.substr(0,ids.length - 1);
+					console.log(ids);
+					//todo删除的服务器操作
+				}, function(index) {
+					layer.close(index);
+				});
+				
 			}
 		</script>
 	</body>
+
 </html>

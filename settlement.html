@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="asserts/bootstrap/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<script src="asserts/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="asserts/layui/css/layui.css"/>
+		<script src="asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/layui/lay/modules/form.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/jsAddress.js" type="text/javascript" charset="utf-8"></script>
+		<title>结算</title>
+		<style type="text/css">
+			.extra{
+				color: #005EA7;
+				text-decoration: none;
+				cursor: pointer;
+				margin-right: 5px ;
+			}
+			.extra:hover{
+				color: red;
+				text-decoration: none;
+			}
+			.address-item{
+				font-size: 12px;
+				color: #666;
+				margin: 5px 0px;
+				width: 100%;
+			}
+			.address-item-brief{
+				display: inline-block;
+				margin-right: 2px;
+				border:1px #ddd solid;
+				padding:5px 15px;
+				cursor: pointer;
+			}
+			.address-item-brief-active{
+				border: 2px solid #D9534F;
+			}
+			.address-detail{
+				text-align: left;
+				width: 85%;
+				display: inline-block;
+				padding: 8px 0;
+			}
+			.address-detail .item{
+				margin-right: 10px;
+			}
+			.address-detail .oper{
+				float: right;
+				display: inline-block;
+			}
+			.address-detail:hover{
+				background: #FFF4E8;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div style="margin: 50px 0;position: relative;width: 230px;">
+				<a style="text-decoration: none;position: absolute;">
+					<img src="img/logo.png"/>
+				</a>
+				<div style="display:block;font-size: x-large;width:100px;top:13px;right:0;height: 57px;position: absolute;">结算页</div>
+			</div>
+			<div style="margin-top: 120px;">
+				<div style="font-size: large;color: #666666;margin-bottom: 10px;">填写并核对订单信息</div>
+				<div style="width: 100%;border: 1px solid #ddd;">
+					<div>
+						<div>
+							<div style="margin-left: 20px;margin-top:10px;font-weight: bold;font-size: 14px;display: inline-block;">收货人信息</div>
+							<div style="display:inline-block;float: right;margin-right: 20px;margin-top: 10px;">
+								<a class="extra">新建地址</a>
+							</div>
+						</div>
+						<div id="addNewAddress" style="width: 100%;padding: 10px 80px;">
+							<form class="layui-form">
+								<div class="layui-form-item">
+									<div class="layui-form-label">收货人</div>
+									<div class="layui-input-block">
+										<input class="layui-input" autocomplete="off" type="text" name="name" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<div class="layui-form-label">地址</div>
+									<div class="layui-input-block">
+										<div class="layui-inline">
+											<select id="province" name="province" lay-filter="province"></select>
+										</div>
+										<div class="layui-inline">
+											<select id="city" name="city" lay-filter="city"></select>
+										</div>
+										<div class="layui-inline">
+											<select id="county" name="county"></select>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div style="width: 100%;">
+							<ul style="list-style: none;text-align: center;">
+								<li>
+									<div class="address-item">
+										<span class="address-item-brief address-item-brief-active">翁勇城&nbsp;&nbsp;广东</span>
+										<span class="address-detail">
+											<span class="item">翁勇城</span>
+											<span class="item">广东</span>
+											<span class="item">佛山市</span>
+											<span class="item">南海区</span>
+											<span class="item">狮山镇华南师范大学南海校区</span>
+											<span class="item">156****0518</span>
+											<span class="oper">
+												<a class="extra">设为默认地址</a>
+												<a class="extra">修改</a>
+												<a class="extra">删除</a>
+											</span>
+										</span>
+									</div>
+								</li>
+								<li>
+									<div class="address-item">
+										<span class="address-item-brief">翁勇城&nbsp;&nbsp;广东</span>
+										<span class="address-detail">
+											<span class="item">翁勇城</span>
+											<span class="item">广东</span>
+											<span class="item">佛山市</span>
+											<span class="item">南海区</span>
+											<span class="item">狮山镇华南师范大学南海校区</span>
+											<span class="item">156****0518</span>
+											<span class="oper">
+												<a class="extra">设为默认地址</a>
+												<a class="extra">修改</a>
+												<a class="extra">删除</a>
+											</span>
+										</span>
+									</div>
+								</li>
+								<li>
+									<div class="address-item">
+										<span class="address-item-brief">翁勇城&nbsp;&nbsp;广东</span>
+										<span class="address-detail">
+											<span class="item">翁勇城</span>
+											<span class="item">广东</span>
+											<span class="item">佛山市</span>
+											<span class="item">南海区</span>
+											<span class="item">狮山镇华南师范大学南海校区</span>
+											<span class="item">156****0518</span>
+											<span class="oper">
+												<a class="extra">设为默认地址</a>
+												<a class="extra">修改</a>
+												<a class="extra">删除</a>
+											</span>
+										</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		$(function(){
+			/*layui.use('form', function(){
+ 				var form = layui.form();
+  				//各种基于事件的操作，下面会有进一步介绍
+  				form.on('select(province)', function(data){
+  					console.log(data.value);
+		    		addressInit("province","city","county",data.value);
+		    	});
+		    
+		    	form.on('select(city)', function(data){
+		    		addressInit("province","city","county",$("#province").val(),data.value);
+		    	}); 
+			});*/
+			var form;
+			layui.use('form', function() {
+				form = layui.form();
+				//各种基于事件的操作，下面会有进一步介绍
+			});
+			addressInit(form,"province","city","county");
+		})
+	</script>
+</html>

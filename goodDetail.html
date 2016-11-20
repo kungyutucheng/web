@@ -6,6 +6,11 @@
 		<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="asserts/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="asserts/jquery.imagezoom.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="asserts/layui/css/layui.css"/>
+		<script src="asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/layui/lay/dest/layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/echarts.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/common.js" type="text/javascript" charset="utf-8"></script>
 		<style type="text/css">
 			body{
 				background: #F2F2F2;;
@@ -100,19 +105,31 @@
 				text-decoration:none;
 				cursor:pointer;
 				background: #D9534F;
-				color: white;f
-				ont-size: large;
+				color: white;
 				font-weight: bold;
 				border-radius: 3px;
 				padding: 10px;
-				
 				margin-left: 10px;
 			}
 			.myBtn:hover{
-				
+				color: white;
+				text-decoration: none;
 			}
-			#shoppingCartBtn:before{
-				content: url(img/shopping_cart.png);
+			.row{
+				width: 100%;
+				padding: 10px 0px;
+				text-align: left;
+			}
+			.row .detail-item{
+				font-size: 12px;
+				width: 22%;
+				display: inline-block;
+			}
+			.row .head,.row .detail-item:first-child{
+				margin-left: 10%;
+			}
+			.row .brand{
+				color: #005EA7;
 			}
 		</style>
 	</head>
@@ -159,19 +176,16 @@
 						<span class="block disable">128GB</span>	
 					</span>
 				</div>
-				<div class="row">
-					<!--<a id="addBtn">+</a>
-					<input type="text" name="num"/>
-					<a id="subBtn">-</a>-->
-					<div class="input-group" style="width: 140px;float: left;">
-					  <span class="input-group-addon">+</span>
-					  <input type="text" class="form-control">
-					  <span class="input-group-addon">-</span>
+				<div class="row" style="position: relative;">
+					<div class="input-group" style="width: 140px;float: left;position: absolute;">
+					  	<span class="input-group-addon" style="cursor: pointer;" onclick="subNum('num');">-</span>
+					  	<input id="num" type="text" class="form-control" value="1" style="height: 40px;" onblur="getNumFromInput(this);">
+					  	<span class="input-group-addon" style="cursor: pointer;" onclick="addNum('num');">+</span>
 					</div>
-					<a id="shoppingCartBtn">加入购物车</a>
+					<a id="shoppingCartBtn" style="position: absolute;margin-left: 150px;" class="myBtn">加入购物车</a>
 				</div>
 			</div>
-			<div id="owner" style="display: inline-block;float: right;padding-right: 20px;text-align: center;">
+			<div id="owner" style="display: inline-block;float: right;padding-right: 20px;text-align: center;margin-bottom: 40px;">
 				<div style="border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;">
 					<img src="img/sandi.png" />
 				</div>
@@ -179,21 +193,161 @@
 					<a>闪迪官方旗舰店</a>
 				</div>
 			</div>
+			<div style="clear: both;padding-top: 40px;padding-bottom:40px;width: 100%;">
+				<div class="layui-tab layui-tab-card" lay-filter="demo">
+				  	<ul class="layui-tab-title">
+					    <li class="layui-this">商品详情</li>
+					    <li>用户评价<span style="color: #005EA7;">(37w+)</li>
+					</ul>
+					<div class="layui-tab-content">
+					    <div class="layui-tab-item layui-show">
+					    	<div style="width: 100%;">
+					    		<div class="row">
+					    			<div class="head">
+					    				品牌：<span class="brand">闪迪</span>
+					    			</div>
+					    		</div>
+					    		<div class="row">
+					    			<div class="detail-item">
+					    				商品名称：闪迪TF卡
+					    			</div>
+					    			<div class="detail-item">
+					    				商品编号：1887526
+					    			</div>
+					    			<div class="detail-item">
+					    				商品毛重：10.00g
+					    			</div>
+					    			<div class="detail-item">
+					    				商品产地：中国大陆
+					    			</div>
+					    		</div>
+					    		<div class="row">
+					    			<div class="detail-item">
+					    				商品名称：闪迪TF卡
+					    			</div>
+					    			<div class="detail-item">
+					    				商品编号：1887526
+					    			</div>
+					    			<div class="detail-item">
+					    				商品毛重：10.00g
+					    			</div>
+					    			<div class="detail-item">
+					    				商品产地：中国大陆
+					    			</div>
+					    		</div>
+					    	</div>
+					    </div>
+					    <div class="layui-tab-item">
+					    	<div>
+								<div>
+									<div style="display: inline-block;margin:0px 100px;">
+										<span style="font-size: 70px;color: red;">98</span>
+										<span style="font-size: 35px;color: red;">%</span>
+									</div>
+									<div id="commnetPercentChart" style="width:300px;height:150px;display: inline-block;vertical-align: middle;"></div>
+								</div>
+								<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+									<ul class="layui-tab-title">
+										<li class="layui-this">全部评价（37W）</li>
+										<li>好评（2189）</li>
+										<li>中评（219）</li>
+										<li>差评（320）</li>
+									</ul>
+									<div class="layui-tab-content">
+										<div class="layui-tab-item layui-show" style="margin-bottom: 30px;">
+					    					<iframe id="allComment" src="comment.html" style="width: 100%;height: 1000px;" frameborder="0" scrolling="no"></iframe>
+					    				</div>
+										<div class="layui-tab-item">内容2</div>
+										<div class="layui-tab-item">内容3</div>
+										<div class="layui-tab-item">内容5</div>
+									</div>
+								</div>
+							</div>
+					    </div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<script type="text/javascript">
-		$(function(){
-			$(".jqzoom").imagezoom();
-			$("#thumblist li a").click(function(){
-				$(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
-				$(".jqzoom").attr('src',$(this).find("img").attr("mid"));
-				$(".jqzoom").attr('rel',$(this).find("img").attr("big"));
+			$(function(){
+				$(".jqzoom").imagezoom();
+				$("#thumblist li a").click(function(){
+					$(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+					$(".jqzoom").attr('src',$(this).find("img").attr("mid"));
+					$(".jqzoom").attr('rel',$(this).find("img").attr("big"));
+				});
+				
+				layui.use(['element'], function(){
+				  	var element = layui.element();
+	  
+				  	//监听Tab切换
+				  	element.on('tab(demo)', function(data){
+				  		if(data.index == 1){
+				  			loadComment();
+				  		}
+				 	});
+	  
+				});
+	
 			});
+			
+			function loadComment() {
+				var chart = echarts.init(document.getElementById("commnetPercentChart"));
+				var option = {
+					tooltip: {
+						trigger: 'item',
+						formatter: "{b}: {c} ({d}%)"
+					},
+					legend: {
+						x: 'left',
+						orient: 'vetical',
+						data: ['好评', '中评', '差评']
+					},
+					series: [{
+						type: 'pie',
+						radius: ['50%', '70%'],
+						avoidLabelOverlap: false,
+						label: {
+							normal: {
+								show: false,
+								position: 'center'
+							},
+							emphasis: {
+								show: true,
+								textStyle: {
+									fontSize: '30',
+									fontWeight: 'bold'
+								}
+							}
+						},
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						data: [{
+							value: 335,
+							name: '好评'
+						}, {
+							value: 310,
+							name: '中评'
+						}, {
+							value: 234,
+							name: '差评'
+						}, ]
+					}]
+				};
+				chart.setOption(option);
+				
 
-		});
+			}
+			
 			function changePic(obj){
 				//todo到服务器上获取对应的大图，小图太模糊
 				$("#bigPic").attr("src",$(obj).attr("src"));
 			}
+			
+			
 		</script>
 	</body>
 </html>
