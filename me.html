@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="asserts/address/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="asserts/layui/css/layui.css" />
+		<script src="asserts/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<title>个人中心</title>
+		<style type="text/css">
+			a:hover {
+				cursor: pointer;
+				text-decoration: none;
+			}
+			
+		</style>
+	</head>
+
+	<body style="background: #ddd;">
+		<div class="container">
+			<div style="display: inline-block;width:17%;">
+				<ul class="layui-nav layui-nav-tree">
+					<li class="layui-nav-item layui-nav-itemed">
+						<a href="">设置</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a onclick="changePage(1);">个人信息</a>
+							</dd>
+							<dd>
+								<a onclick="changePage(2);">收货地址</a>
+							</dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item layui-nav-itemed">
+						<a>个人中心</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a onclick="changePage(3);">历史订单</a>
+							</dd>
+							<dd>
+								<a onclick="changePage(4);">我的评价</a>
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+			<div style="display: inline-block;width: 82%;vertical-align: top;float: right;">
+				<iframe id="iframe" src="personInfo.html" frameborder="0" scrolling="no" style="width: 100%;"></iframe>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function changePage(index) {
+				var url;
+				if(index == 1) {
+					url = "personInfo.html";
+				} else if(index == 2) {
+					url = "address.html";
+				} else if(index == 3) {
+					url = "historyOrder.html";
+				} else if(index == 4) {
+					url = "myComment.html";
+				}
+				$("#iframe").attr("src", url);
+			}
+
+			//调整iframe高度，使其高度自适应内容
+			function reinitIframe() {
+				var iframe = document.getElementById("iframe");
+				try {
+					iframe.height = iframe.contentWindow.document.documentElement.scrollHeight;
+				} catch(ex) {}
+			}
+			window.setInterval("reinitIframe()", 200);
+		</script>
+	</body>
+
+</html>

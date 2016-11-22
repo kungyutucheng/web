@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="asserts/address/css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="asserts/layui/css/layui.css"/>
+		<script src="asserts/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<title>个人信息</title>
+		<style type="text/css">
+		</style>
+	</head>
+	<body>
+		<div class="container-fluid iframe-offset-y">
+			<form class="layui-form">
+				<div class="layui-form-item">
+					<div class="layui-form-label">用户名</div>
+					<div class="layui-input-block">
+						<div class="layui-inline">
+							<input class="layui-input" required lay-verify="required" name="username" type="text"/>
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-form-label">性别</div>
+					<div class="layui-input-block">
+						<input type="radio" name="sex" value="男" title="男" checked/>
+						<input type="radio" name="sex" value="女" title="女"/>
+						<input type="radio" name="sex" value="保密" title="保密"/>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-form-label">生日</div>
+					<div class="layui-input-block">
+						<div class="layui-inline">
+							<select name="year">
+								<option>1994</option>
+								<option>1992</option>
+							</select>
+						</div>
+						<div class="layui-inline">
+							<select name="month">
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+						<div class="layui-inline">
+							<select name="day">
+								<option>1</option>
+								<option>2</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn">提交</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script>
+		//Demo
+		layui.use('form', function(){
+		  var form = layui.form();
+		  
+		  //监听提交
+		  form.on('submit(formDemo)', function(data){
+		    layer.msg(JSON.stringify(data.field));
+		    return false;
+		  });
+		});
+		</script>
+	</body>
+</html>

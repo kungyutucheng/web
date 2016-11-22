@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="asserts/address/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="asserts/layui/css/layui.css" />
+		<script src="asserts/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/address/js/city-picker.data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/address/js/city-picker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/address/js/main.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="asserts/address/css/city-picker.css" />
+		<link rel="stylesheet" type="text/css" href="asserts/address/css/main.css" />
+		<title>个人信息</title>
+		<style type="text/css">
+			.new-address-btn {
+				background: #F1F9EA;
+				cursor: pointer;
+				font-size: medium;
+				border: 1px #BFD6AF solid;
+				padding: 5px 15px;
+				font-weight: bold;
+			}
+			
+			.new-address-btn:hover {
+				text-decoration: none;
+				color: black;
+			}
+		
+			.address-num{
+				color: #71B247;
+			}
+			.address-item{
+				border: 2px #ddd solid;
+				width: 100%;
+				margin: 10px 0;
+			}
+			.sub-title{
+				margin: 10px 10px 20px 10px;
+				font-weight: bold;
+				font-size: 14px;
+			}
+			.address-item .left,.address-item .right{
+				display: inline-block;
+				font-size: 12px;
+				margin: 3px 0;
+			}
+			.address-item .left{
+				text-align: right;
+				width: 80px;
+				color: #999;
+			}
+			.address-item .left:after{
+				content: "：";
+			}
+			.address-item .oper{
+				text-align: right;
+				margin: 10px 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container-fluid iframe-offset-y">
+			<div>
+				<div>
+					<a class="new-address-btn"  onclick="showAddAddr();">新增收货地址</a>
+					<span style="vertical-align: middle;margin-left: 10px;color: #999;">您已创建<span class="address-num">5</span>个收货地址，最多可创建<span class="address-num">20</span>个地址</span>
+				</div>
+				<div id="addNewAddress" style="width: 100%;padding: 10px 80px;display: none;">
+					<form class="layui-form" style="border: 1px #ddd dashed;padding:10px;" action="">
+						<div class="layui-form-item">
+							<div class="layui-form-label width100">收货人</div>
+							<div class="layui-input-block">
+								<input class="layui-input" required lay-verify="required" autocomplete="off" type="text" name="name" />
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-form-label width100">所在地区</div>
+							<div class="layui-input-block">
+								<input id="city-picker" class="form-control width100" required lay-verify="required" readonly type="text" value="江苏省/常州市/溧阳市" data-toggle="city-picker">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-form-label width100">详细地址</div>
+							<div class="layui-input-block">
+								<input name="detailAddr" class="layui-input" required lay-verify="required" autocomplete="off" type="text" />
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-form-label width100">电话</div>
+							<div class="layui-input-block">
+								<input name="tel" class="layui-input" required autocomplete="off" type="tel" lay-verify="tel" />
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+								<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+								<button type="button" class="layui-btn layui-btn-primary" onclick="hideAddAddr()">收起</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div>
+				<ul>
+					<li>
+						<div class="address-item">
+							<div class="sub-title">翁勇城 &nbsp;&nbsp;广东</div>
+							<div>
+								<div class="left">收货人</div>
+								<div class="right">翁勇城</div>
+							</div>
+							<div>
+								<div class="left">所在地区</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">地址</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">电话</div>
+								<div class="right">156****3728</div>
+							</div>
+							<div class="oper">
+								<a class="extra">设为默认</a>
+								<a class="extra">修改</a>
+								<a class="extra">删除</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="address-item">
+							<div class="sub-title">翁勇城 &nbsp;&nbsp;广东</div>
+							<div>
+								<div class="left">收货人</div>
+								<div class="right">翁勇城</div>
+							</div>
+							<div>
+								<div class="left">所在地区</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">地址</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">电话</div>
+								<div class="right">156****3728</div>
+							</div>
+							<div class="oper">
+								<a class="extra">设为默认</a>
+								<a class="extra">修改</a>
+								<a class="extra">删除</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="address-item">
+							<div class="sub-title">翁勇城 &nbsp;&nbsp;广东</div>
+							<div>
+								<div class="left">收货人</div>
+								<div class="right">翁勇城</div>
+							</div>
+							<div>
+								<div class="left">所在地区</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">地址</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">电话</div>
+								<div class="right">156****3728</div>
+							</div>
+							<div class="oper">
+								<a class="extra">设为默认</a>
+								<a class="extra">修改</a>
+								<a class="extra">删除</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="address-item">
+							<div class="sub-title">翁勇城 &nbsp;&nbsp;广东</div>
+							<div>
+								<div class="left">收货人</div>
+								<div class="right">翁勇城</div>
+							</div>
+							<div>
+								<div class="left">所在地区</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">地址</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">电话</div>
+								<div class="right">156****3728</div>
+							</div>
+							<div class="oper">
+								<a class="extra">设为默认</a>
+								<a class="extra">修改</a>
+								<a class="extra">删除</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="address-item">
+							<div class="sub-title">翁勇城 &nbsp;&nbsp;广东</div>
+							<div>
+								<div class="left">收货人</div>
+								<div class="right">翁勇城</div>
+							</div>
+							<div>
+								<div class="left">所在地区</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">地址</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">电话</div>
+								<div class="right">156****3728</div>
+							</div>
+							<div class="oper">
+								<a class="extra">设为默认</a>
+								<a class="extra">修改</a>
+								<a class="extra">删除</a>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="address-item">
+							<div class="sub-title">翁勇城 &nbsp;&nbsp;广东</div>
+							<div>
+								<div class="left">收货人</div>
+								<div class="right">翁勇城</div>
+							</div>
+							<div>
+								<div class="left">所在地区</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">地址</div>
+								<div class="right">广东汕头潮南峡山</div>
+							</div>
+							<div>
+								<div class="left">电话</div>
+								<div class="right">156****3728</div>
+							</div>
+							<div class="oper">
+								<a class="extra">设为默认</a>
+								<a class="extra">修改</a>
+								<a class="extra">删除</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			layui.use('form', function() {
+				var form = layui.form();
+
+				form.verify({
+					tel: [
+						/^(0?1[358]\d{9})$|^((0(10|2[1-3]|[3-9]\d{2}))?[1-9]\d{6,7})$/,
+						"电话格式有误"
+					]
+				});
+				//监听提交
+				form.on('submit(formDemo)', function(data) {
+					layer.msg(JSON.stringify(data.field));
+					return false;
+				});
+			});
+
+			//显示添加地址区域
+			function showAddAddr() {
+				$("#addNewAddress").slideDown();
+			}
+
+			//隐藏添加地址区域
+			function hideAddAddr() {
+				$("#addNewAddress").slideUp();
+			}
+		</script>
+	</body>
+
+</html>

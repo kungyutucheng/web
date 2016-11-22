@@ -1,7 +1,65 @@
-body{
+body {
 	font-family: "微软雅黑";
 }
-.line{
+
+.line {
 	display: inline-block;
 	vertical-align: middle;
+}
+
+.myBtn {
+	padding: 10px 30px;
+	color: white;
+	background: #D9534F;
+	font-size: layer;
+	font-weight: bold;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.myBtn:hover {
+	text-decoration: none;
+	color: white;
+	cursor: pointer;
+}
+
+.header {
+	margin: 50px 0;
+	position: relative;
+	width: 230px;
+}
+
+.header .logo {
+	text-decoration: none;
+	position: absolute;
+}
+
+.header .title {
+	display: block;
+	font-size: x-large;
+	width: 100px;
+	top: 13px;
+	right: 0;
+	height: 57px;
+	position: absolute;
+}
+
+.iframe-offset-y {
+	padding: 40px;
+}
+
+.extra {
+	color: #005EA7;
+	text-decoration: none;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.extra:hover {
+	color: red;
+	text-decoration: none;
+}
+
+.width100 {
+	width: 100px;
 }
