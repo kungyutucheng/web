@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../asserts/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<script src="../../asserts/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<title>商品管理</title>
+		<style type="text/css">
+			.search-div {
+				width: 99%;
+				border: 1px #ddd solid;
+				background: #fff;
+			}
+			
+			.text-bar {
+				background: #f1f1f1;
+				padding: 5px 10px;
+			}
+			
+			.text-bar .text {
+				text-align: left;
+			}
+			
+			.text-bar .icon {
+				text-align: right;
+				float: right;
+				cursor: pointer;
+			}
+			
+			.text-bar .icon:hover {
+				color: #1AA094;
+			}
+			
+			.search-div .filter {
+				margin: 10px auto;
+				text-align: center;
+			}
+			.result-div{
+				width: 99%;
+				border: 1px #ddd solid;
+				background: #fff;
+				margin: 10px 0;
+			}
+			.table{
+				width: 100%;
+				border: 1px #f1f1f1 solid;
+				text-align: center;
+				border-width:1px 0px 0px 1px;
+			}
+			.table thead th{
+				background: #f1f1f1;
+				text-align: center;
+				padding: 5px 0;
+			}
+			.table tbody tr td{
+				border:solid #ddd; 
+				border-width:0px 1px 1px 0px;
+				padding:10px 0px;
+			}
+			.table tbody tr:hover{
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="search-div">
+			<div class="text-bar">
+				<span class="text">查询条件</span>
+				<span class="icon">
+					<i class="layui-icon" id="iconSwitch">&#xe619;</i>
+				</span>
+			</div>
+			<div class="filter">
+				<form class="layui-form" id="searchForm">
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<div class="layui-form-label">名称</div>
+							<div class="layui-input-block">
+								<input type="text" name="name" id="gname" class="layui-input" />
+							</div>
+						</div>
+						<div class="layui-inline">
+							<div class="layui-form-label">编号</div>
+							<div class="layui-input-block">
+								<input type="text" name="name" id="gname" class="layui-input" />
+							</div>
+						</div>
+						<div class="layui-inline">
+							<div class="layui-form-label">价格</div>
+							<div class="layui-input-block">
+								<input type="text" name="name" id="gname" class="layui-input" />
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+							<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="result-div">
+			<table class="table">
+				<thead>
+					<th></th>
+					<th>序号</th>
+					<th>名称</th>
+					<th>编号</th>
+					<th>价格</th>
+					<th>已售数量</th>
+					<th>上架时间</th>
+					<th>操作</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<input type="checkbox" />
+						</td>
+						<td>1</td>
+						<td>某个不知名的商品名</td>
+						<td>42423323</td>
+						<td>1</td>
+						<td>1</td>
+						<td>2016-09-09&nbsp;&nbsp;22:33:33</td>
+						<td>
+							<span>
+								<a class="extra">详情</a>
+							</span>
+							<span>
+								<a class="extra">修改</a>
+							</span>
+							<span>
+								<a class="extra">删除</a>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" />
+						</td>
+						<td>1</td>
+						<td>某个不知名的商品名</td>
+						<td>42423323</td>
+						<td>1</td>
+						<td>1</td>
+						<td>2016-09-09&nbsp;&nbsp;22:33:33</td>
+						<td>
+							<span>
+								<a class="extra">详情</a>
+							</span>
+							<span>
+								<a class="extra">修改</a>
+							</span>
+							<span>
+								<a class="extra">删除</a>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" />
+						</td>
+						<td>1</td>
+						<td>某个不知名的商品名</td>
+						<td>42423323</td>
+						<td>1</td>
+						<td>1</td>
+						<td>2016-09-09&nbsp;&nbsp;22:33:33</td>
+						<td>
+							<span>
+								<a class="extra">详情</a>
+							</span>
+							<span>
+								<a class="extra">修改</a>
+							</span>
+							<span>
+								<a class="extra">删除</a>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script type="text/javascript">
+			var flag = true;
+			$(".icon").on("click",function(){
+				if(flag){
+					$("#iconSwitch").text("&#xe61a;");
+					flag = false;
+					$(".filter").slideUp();
+				}else{
+					$("#iconSwitch").text("&#xe619;");
+					flag = true;
+					$(".filter").slideDown();
+				}
+			});
+		</script>
+	</body>
+
+</html>

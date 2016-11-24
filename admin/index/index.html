@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../asserts/layui/css/layui.css" />
+		<script src="../../easyui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<title>主页</title>
+		<style type="text/css">
+			a:hover {
+				cursor: pointer;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div style="display: inline-block;width:10%;">
+			<ul class="layui-nav layui-nav-tree layui-nav-side">
+				<li class="layui-nav-item layui-nav-itemed">
+					<a>商品管理</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a name='a' title="../good/list.html">商品管理</a>
+						</dd>
+						<dd>
+							<a name='a' title="../../address.html">用户管理</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a>个人中心</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a name='a' title="../../myComment.html">历史订单</a>
+						</dd>
+						<dd>
+							<a name='a' title="../../search.html">我的评价</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a href="">商品管理</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a onclick="changePage(1);">商品管理</a>
+						</dd>
+						<dd>
+							<a onclick="changePage(2);">用户管理</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a>个人中心</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a onclick="changePage(3);">历史订单</a>
+						</dd>
+						<dd>
+							<a onclick="changePage(4);">我的评价</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a href="">商品管理</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a onclick="changePage(1);">商品管理</a>
+						</dd>
+						<dd>
+							<a onclick="changePage(2);">用户管理</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a>个人中心</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a onclick="changePage(3);">历史订单</a>
+						</dd>
+						<dd>
+							<a onclick="changePage(4);">我的评价</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a href="">商品管理</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a onclick="changePage(1);">商品管理</a>
+						</dd>
+						<dd>
+							<a onclick="changePage(2);">用户管理</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a>个人中心</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a onclick="changePage(3);">历史订单</a>
+						</dd>
+						<dd>
+							<a onclick="changePage(4);">我的评价</a>
+						</dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<!--<div style="display: inline-block;width: 89%;vertical-align: top;float: right;">
+			<iframe id="iframe" src="../good/list.html" frameborder="0" scrolling="no" style="width: 100%;"></iframe>
+		</div>-->
+		<div style="display: inline-block;width: 89%;vertical-align: top;float: right;">
+			<div class="layui-tab" lay-filter="demo">
+				<ul class="layui-tab-title">
+					<li class="layui-this">网站设置</li>
+				</ul>
+				<div class="layui-tab-content">
+					<div class="layui-tab-item layui-show">内容1</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function changePage(index) {
+				var url;
+				if(index == 1) {
+					url = "../good/list.html";
+				} else if(index == 2) {
+					url = "../../address.html";
+				} else if(index == 3) {
+					url = "../../historyOrder.html";
+				} else if(index == 4) {
+					url = "../../myComment.html";
+				}
+				$("#iframe").attr("src", url);
+			}
+
+			//调整iframe高度，使其高度自适应内容
+			function reinitIframe() {
+				var iframes = document.getElementsByName("iframe");
+				try {
+					for(var i = 0; i < iframes.length; i++)
+						iframes[i].height = iframes[i].contentWindow.document.documentElement.scrollHeight;
+				} catch(ex) {}
+			}
+			window.setInterval("reinitIframe()", 200);
+
+			layui.use('element', function() {
+				var $ = layui.jquery,
+					element = layui.element(); //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+				//触发事件
+				var active = {
+					tabAdd: function() {
+
+						//新增一个Tab项
+						element.tabAdd('demo', {
+							title: $(this).text(),
+							content: '<iframe name="iframe" src="' + this.title + '" frameborder="0" scrolling="no" style="width: 100%;"></iframe>'
+						})
+					},
+					tabDelete: function() {
+						//删除指定Tab项
+						element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
+					},
+					tabChange: function(index) {
+						//切换到指定Tab项
+						element.tabChange('demo', index); //切换到第2项（注意序号是从0开始计算）
+					}
+				};
+
+				$("a[name='a']").on("click", function() {
+					var title = $(this).text();
+					var tabs = $(".layui-tab-title").children();
+					for(var i = 0; i < tabs.length; i++) {
+						if($(tabs[i]).text() == title) {
+							element.tabChange('demo', i);
+							return;
+						}
+					}
+					active["tabAdd"].call(this);
+					active.tabChange($(".layui-tab-title").children().length - 1);
+				})
+			});
+		</script>
+	</body>
+
+</html>
