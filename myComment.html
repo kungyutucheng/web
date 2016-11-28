@@ -80,6 +80,7 @@
 
 				</tbody>
 			</table>
+			<div id="page" style="width:100%;text-align: center;"></div>
 		</div>
 		<script>
 			$("[name='star']").raty({
@@ -87,6 +88,18 @@
 				score: function() {
 					return $(this).attr('data-score');
 				}
+			});
+			layui.use(['laypage', 'layer'], function() {
+				var laypage = layui.laypage;
+				laypage({
+					cont: 'page', //id
+					pages: 100, //总页数
+					curr: 1, //当前页
+					groups: 5, //连续显示分页数
+					jump: function(obj, first) {
+						console.log(obj.curr);
+					}
+				});
 			});
 		</script>
 	</body>

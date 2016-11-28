@@ -1,44 +1,54 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="css/common.css" />
 		<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="asserts/layui/css/layui.css" />
 		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<title></title>
+		<script src="asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<title>商品列表</title>
 		<style>
-			.filterLine{
-				padding:10px 0;
+			.filterLine {
+				padding: 10px 0;
 				border-bottom: 1px solid #ddd;
 				text-align: left;
 			}
-			.filterLine .title{
+			
+			.filterLine .title {
 				display: inline-block;
 				vertical-align: middle;
 				text-align: left;
-				width:4%
+				width: 4%
 			}
-			.filterLine .detail{
+			
+			.filterLine .detail {
 				display: inline-block;
 				vertical-align: middle;
 				text-align: left;
 				width: 95%;
 			}
-			.filterLine .filterTable{
-				width:100%;
+			
+			.filterLine .filterTable {
+				width: 100%;
 				text-align: center;
 			}
-			.filterLine .filterTable tr td a{
+			
+			.filterLine .filterTable tr td a {
 				cursor: pointer;
+				color: #005AA0;
 			}
-			.filterLine .filterTable tr td a:hover{
+			
+			.filterLine .filterTable tr td a:hover {
 				cursor: pointer;
 				text-decoration: none;
 				color: #D9534F;
 			}
-			.block{
-				color: black;
+			
+			.block {
+				color: #333333;
 				background: white;
 				padding: 4px 5px;
 				border: 1px solid #ddd;
@@ -46,14 +56,17 @@
 				margin: 0 auto;
 				float: left;
 			}
-			.blockActive{
+			
+			.blockActive {
 				color: white;
-				background: red;
+				background: #E4393C;
 			}
-			.block:hover{
-				border: 1px solid red;
+			
+			.block:hover {
+				border: 1px solid #E4393C;
 			}
-			.pageButton{
+			
+			.pageButton {
 				padding: 5px 10px;
 				float: left;
 				background: white;
@@ -62,96 +75,117 @@
 				width: 50px;
 				cursor: pointer;
 			}
-			.prevButton{
+			
+			.prevButton {
 				border-left: 1px solid #ddd;
 			}
-			.nextButton{
+			
+			.nextButton {
 				border-right: 1px solid #ddd;
 			}
-			.gl{
+			
+			.gl {
 				list-style-type: none;
 				height: auto;
 				width: auto;
-				margin-top:10px;
+				margin-top: 10px;
 				padding: 0;
 				text-align: left;
 			}
-			.gl .item{
+			
+			.gl .item {
 				display: inline-block;
-				width:223px;
+				width: 223px;
 				height: auto;
 				padding: 10px;
 				border: 1px solid transparent;
-				
 			}
-			.gl .item a img{
-				width:200px;
+			
+			.gl .item a img {
+				width: 200px;
 				cursor: pointer;
 			}
-			.gl .item:hover{
+			
+			.gl .item:hover {
 				border: 1px solid #EDEDED;
 				box-shadow: 1px 1px 2px #ddd;
 			}
-			.gl .item .price{
+			
+			.gl .item .price {
 				text-align: left;
-				color: red;
+				color: #E4393C;
 				font-size: 20px;
 			}
-			.gl .item .price:before{
+			
+			.gl .item .price:before {
 				content: "¥";
 			}
-			.gl .item .title{
+			
+			.gl .item .title {
 				text-align: left;
 				font-size: 14px;
 				margin-top: 10px;
 				cursor: pointer;
 			}
-			.gl .item .title a{
+			
+			.gl .item .title a {
 				color: #A7A7A7;
 			}
-			.gl .item .title a:hover{
+			
+			.gl .item .title a:hover {
 				text-decoration: none;
-				color: red;
+				color: #E4393C;
 			}
-			.gl .item .commnetNum{
+			
+			.gl .item .commnetNum {
 				text-align: left;
 				color: #a7a7a7;
 				font-size: 14px;
 				margin-top: 10px;
 			}
-			.gl .item .commnetNum .num{
+			
+			.gl .item .commnetNum .num {
 				color: #005AA0;
 			}
-			.gl .item .commnetNum .num:before,.gl .item .commnetNum .num:after{
+			
+			.gl .item .commnetNum .num:before,
+			.gl .item .commnetNum .num:after {
 				content: " ";
 			}
-			.gl .item .owner{
+			
+			.gl .item .owner {
 				text-align: left;
 				color: #A7A7A7;
 				font-size: 14px;
 				margin-top: 10px;
 			}
-			.gl .item .addIntoCartBtn{
+			
+			.gl .item .addIntoCartBtn {
 				text-align: center;
-				color: red;
 				border: 1px solid #DDDDDD;
-				padding:5px 10px;
+				padding: 5px 10px;
 				margin: 20px 0;
 				cursor: pointer;
 			}
-			.gl .item .addIntoCartBtn:hover{
-				border: 1px solid red;
+			
+			.gl .item .addIntoCartBtn:hover {
+				border: 1px solid #E4393C;
 			}
-			.gl .item .addIntoCartBtn a{
+			
+			.gl .item .addIntoCartBtn a {
 				text-decoration: none;
+				color: #E4393C;
 			}
-			.page{
+			
+			.page {
 				list-style-type: none;
 			}
-			.page li{
+			
+			.page li {
 				display: inline-block;
 			}
-			.page li a{
+			
+			.page li a {
 				background: #F6F6F6;
 				color: #333333;
 				border: 1px solid #ddd;
@@ -160,27 +194,33 @@
 				cursor: pointer;
 				margin: 0px 1px;
 			}
-			.page li a:hover{
+			
+			.page li a:hover {
 				text-decoration: none;
-				color: red;
+				color: E4393C;
 			}
-			.page li .active{
+			
+			.page li .active {
 				cursor: default;
 				background: transparent;
 				border: 0px solid transparent;
 			}
-			.page li .active:hover{
+			
+			.page li .active:hover {
 				color: #333;
 			}
-			.page li .disable{
+			
+			.page li .disable {
 				color: #eee;
 				background: transparent;
 				cursor: default;
 			}
-			.page li a.disable:hover{
+			
+			.page li a.disable:hover {
 				color: #eee;
 			}
-			.input-txt{
+			
+			.input-txt {
 				width: 40px;
 				height: 40px;
 				line-height: 40px;
@@ -192,9 +232,11 @@
 			}
 		</style>
 	</head>
+
 	<body>
 		<div class="container">
-			<div style="text-align: left;font-size: 16px;margin-bottom: 5px;"><font style="font-weight: bold;">数码</font>&nbsp;&gt;&nbsp;数码配件&nbsp;&gt;&nbsp;存储卡&nbsp;&gt;&nbsp;</div>
+			<div style="text-align: left;font-size: 16px;margin-bottom: 5px;">
+				<font style="font-weight: bold;">数码</font>&nbsp;&gt;&nbsp;数码配件&nbsp;&gt;&nbsp;存储卡&nbsp;&gt;&nbsp;</div>
 			<div style="background: #F1F1F1;border-top: 1px solid #DDDDDD;border-bottom: 1px solid #DDDDDD;padding:5px;font-size: 14px;
 				text-align: left;">
 				<font color="red">存储卡</font>&nbsp;商品筛选&nbsp;&nbsp;&nbsp;&nbsp;共46485个商品
@@ -206,24 +248,56 @@
 				<div class="detail">
 					<table class="filterTable">
 						<tr>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
 						</tr>
 						<tr>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
-							<td><a>金士顿</a></td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
+							<td>
+								<a>金士顿</a>
+							</td>
 						</tr>
 					</table>
 				</div>
@@ -233,31 +307,47 @@
 				<div class="detail">
 					<table class="filterTable">
 						<tr>
-							<td><a>100</a></td>
-							<td><a>100</a></td>
-							<td><a>100</a></td>
-							<td><a>100</a></td>
-							<td><a>100</a></td>
-							<td><a>100</a></td>
-							<td><a>100</a></td>
-							<td><a>100</a></td>
+							<td>
+								<a>100</a>
+							</td>
+							<td>
+								<a>100</a>
+							</td>
+							<td>
+								<a>100</a>
+							</td>
+							<td>
+								<a>100</a>
+							</td>
+							<td>
+								<a>100</a>
+							</td>
+							<td>
+								<a>100</a>
+							</td>
+							<td>
+								<a>100</a>
+							</td>
+							<td>
+								<a>100</a>
+							</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 			<div style="background: #f1f1f1;border-bottom: 1px solid #ddd;height:40px;padding-top:4px;">
 				<div style="display: inline-block;text-align: left;margin-left: 10px;float: left;">
-					<span class="block blockActive">销量</span>
-					<span class="block">价格</span>
-					<span class="block">评论数</span>
-					<span class="block">上架时间</span>
+					<span class="block blockActive" onclick="changeSortWay(1);">销量</span>
+					<span class="block" onclick="changeSortWay(2);">价格</span>
+					<span class=" block " onclick="changeSortWay(3);">评论数</span>
+					<span class="block" onclick="changeSortWay(4);">上架时间</span>
 				</div>
-				<div style="display: inline-block;float:right;margin-right: 10px;">
-					<div style="display: inline-block;float: left;padding-top: 8px;">1&nbsp;/&nbsp;70&nbsp;&nbsp;</div>			
-					<div style="display: inline-block;">
-						<span class="pageButton">&lt;</span>
-						<span class="pageButton">&gt;</span>
-					</div>					
+				<div style=" display: inline-block;float:right;margin-right: 10px; ">
+					<div style="display: inline-block;float: left;padding-top: 8px; ">1&nbsp;/&nbsp;70&nbsp;&nbsp;</div>
+					<div style="display: inline-block; ">
+						<span class="pageButton ">&lt;</span>
+						<span class="pageButton " style="text-align: right; ">&gt;</span>
+					</div>
 				</div>
 			</div>
 			<div>
@@ -265,70 +355,89 @@
 					<li class="item">
 						<a><img src="img/storeCard.jpg" /></a>
 						<div class="price">115</div>
-						<div class="title"><a>fhsafisdfi</a></div>
-						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
-						<div class="owner">京东自营</div>
-						<div class="addIntoCartBtn">
+						<div class="title">
+							<a>fhsafisdfi</a>
+						</div>
+						<div class="commnetNum">
+							已有<font class="num">37293</font>评价
+						</div>
+						<div class="owner">BIN自营</div>
+						<div class="addIntoCartBtn ">
 							<a>加入购物车</a>
 						</div>
 					</li>
-					<li class="item">
-						<a><img src="img/storeCard.jpg" /></a>
-						<div class="price">115</div>
-						<div class="title"><a>fhsafisdfi</a></div>
-						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
-						<div class="owner">京东自营</div>
-						<div class="addIntoCartBtn">
+					<li class="item ">
+						<a><img src="img/storeCard.jpg " /></a>
+						<div class="price ">115</div>
+						<div class="title ">
+							<a>fhsafisdfi</a>
+						</div>
+						<div class="commnetNum ">已有
+							<font class="num ">37293</font>评价</div>
+						<div class="owner ">BIN自营</div>
+						<div class="addIntoCartBtn ">
 							<a>加入购物车</a>
 						</div>
 					</li>
-					<li class="item">
-						<a><img src="img/storeCard.jpg" /></a>
-						<div class="price">115</div>
-						<div class="title"><a>fhsafisdfi</a></div>
-						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
-						<div class="owner">京东自营</div>
-						<div class="addIntoCartBtn">
+					<li class="item ">
+						<a><img src="img/storeCard.jpg " /></a>
+						<div class="price ">115</div>
+						<div class="title ">
+							<a>fhsafisdfi</a>
+						</div>
+						<div class="commnetNum ">已有
+							<font class="num ">37293</font>评价</div>
+						<div class="owner ">BIN自营</div>
+						<div class="addIntoCartBtn ">
 							<a>加入购物车</a>
 						</div>
 					</li>
-					<li class="item">
-						<a><img src="img/storeCard.jpg" /></a>
-						<div class="price">115</div>
-						<div class="title"><a>fhsafisdfi</a></div>
-						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
-						<div class="owner">京东自营</div>
-						<div class="addIntoCartBtn">
+					<li class="item ">
+						<a><img src="img/storeCard.jpg " /></a>
+						<div class="price ">115</div>
+						<div class="title ">
+							<a>fhsafisdfi</a>
+						</div>
+						<div class="commnetNum ">已有
+							<font class="num ">37293</font>评价</div>
+						<div class="owner ">BIN自营</div>
+						<div class="addIntoCartBtn ">
 							<a>加入购物车</a>
 						</div>
 					</li>
-					<li class="item">
-						<a><img src="img/storeCard.jpg" /></a>
-						<div class="price">115</div>
-						<div class="title"><a>fhsafisdfi</a></div>
-						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
-						<div class="owner">京东自营</div>
-						<div class="addIntoCartBtn">
+					<li class="item ">
+						<a><img src="img/storeCard.jpg " /></a>
+						<div class="price ">115</div>
+						<div class="title ">
+							<a>fhsafisdfi</a>
+						</div>
+						<div class="commnetNum ">已有
+							<font class="num ">37293</font>评价</div>
+						<div class="owner ">BIN自营</div>
+						<div class="addIntoCartBtn ">
 							<a>加入购物车</a>
 						</div>
 					</li>
-					<li class="item">
-						<a><img src="img/storeCard.jpg" /></a>
-						<div class="price">115</div>
-						<div class="title"><a>fhsafisdfi</a></div>
-						<div class="commnetNum">已有<font class="num">37293</font>评价</div>
-						<div class="owner">京东自营</div>
-						<div class="addIntoCartBtn">
+					<li class="item ">
+						<a><img src="img/storeCard.jpg " /></a>
+						<div class="price ">115</div>
+						<div class="title ">
+							<a>fhsafisdfi</a>
+						</div>
+						<div class="commnetNum ">已有
+							<font class="num ">37293</font>评价</div>
+						<div class="owner ">BIN自营</div>
+						<div class="addIntoCartBtn ">
 							<a>加入购物车</a>
 						</div>
 					</li>
 				</ul>
 			</div>
-			<div>
-				<div style="display: inline-block;">
-					<ul class="page">
-						<li><a class="disable">&lt;上一页</a></li>
-						<li><a class="active">1</a></li>
+			<!--<div>
+				<div style="display: inline-block; ">
+					<ul class="page ">
+						<li><a class="disable ">&lt;上一页</a></li>
+						<li><a class="active ">1</a></li>
 						<li><a>2</a></li>
 						<li><a>2</a></li>
 						<li><a>2</a></li>
@@ -337,16 +446,43 @@
 						
 					</ul>
 				</div>
-				<div style="display: inline-block;margin-bottom: 50px;">
-					<div style="display: inline-block;">&nbsp;&nbsp;共<font style="font-weight: bold;">40</font>&nbsp;&nbsp;</div>
-					<div style="display: inline-block;">
-						到第<input class="input-txt" />页
+				<div style="display: inline-block;margin-bottom: 50px; ">
+					<div style="display: inline-block; ">&nbsp;&nbsp;共<font style="font-weight: bold; ">40</font>&nbsp;&nbsp;</div>
+					<div style="display: inline-block; ">
+						到第<input class="input-txt " />页
 					</div>
-					<div style="display: inline-block;">
-						<a style="background: #F6F6F6;padding: 10px;border: 1px solid #ddd;color: #333333;font-size: 16px;text-decoration: none;cursor: pointer;">确定</a>
+					<div style="display: inline-block; ">
+						<a style="background: #F6F6F6;padding: 10px;border: 1px solid #ddd;color: #333333;font-size: 16px;text-decoration: none;cursor: pointer; ">确定</a>
 					</div>
 				</div>
-			</div>
+			</div>-->
+			<div id="page" style="width:100%;text-align: center;"></div>
 		</div>
+		<script type="text/javascript">
+			layui.use(['laypage', 'layer'], function() {
+				var laypage = layui.laypage;
+				laypage({
+					cont: 'page', //id
+					pages: 100, //总页数
+					curr: 1, //当前页
+					groups: 5, //连续显示分页数
+					jump: function(obj, first) {
+						console.log(obj.curr);
+					}
+				});
+			});
+			//改变排序方式			
+			function changeSortWay(type) {
+				var waies = $(".block");
+				for(var i = 0; i < waies.length; i++) {
+					if(i == type - 1) {
+						$(waies[i]).attr("class", "block blockActive");
+					} else {
+						$(waies[i]).attr("class", "block");
+					}
+				}
+			}
+		</script>
 	</body>
+
 </html>

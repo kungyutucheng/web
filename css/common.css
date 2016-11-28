@@ -1,4 +1,4 @@
-	body {
+body {
 	font-family: "微软雅黑";
 }
 
@@ -99,3 +99,4 @@
 
 .myTable tbody tr td:first-child img {
 	padding-left: 10px;
+}
