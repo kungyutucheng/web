@@ -13,12 +13,11 @@
 				cursor: pointer;
 				text-decoration: none;
 			}
-			
 		</style>
 	</head>
 
 	<body>
-		<div style="position: fixed;top: 0;width:100%;z-index: 100;background: #393D49;">
+		<div style="height:60px;position: relative;top: 0;width:100%;z-index: 100;background: #393D49;">
 			<div style="display: inline;font-size: 40px;margin-left:20px;">
 				<a><img src="../../img/logo1.png" style="width: 100px;height: 50px;"></a>
 			</div>
@@ -34,73 +33,71 @@
 				</li>
 			</ul>
 		</div>
-		<div style="width: 100%;">
-			<div style="display: inline-block;width:15%;">
-				<ul class="layui-nav layui-nav-tree layui-nav-side" style="margin-top: 60px;border-radius: 0;" >
-					<li class="layui-nav-item layui-nav-itemed">
-						<a>日常</a>
-						<dl class="layui-nav-child">
-							<dd>
-								<a name='a' title="../good/list.html">商品管理</a>
-							</dd>
-							<dd>
-								<a name='a' title="../../address.html">用户管理</a>
-							</dd>
-							<dd>
-								<a name='a' title="../../address.html">订单管理</a>
-							</dd>
-							<dd>
-								<a name='a' title="../../address.html">商家入驻申请</a>
-							</dd>
-							<dd>
-								<a name='a' title="../../address.html">评价管理</a>
-							</dd>
-						</dl>
-					</li>
-					<li class="layui-nav-item layui-nav-itemed">
-						<a>基础</a>
-						<dl class="layui-nav-child">
-							<dd>
-								<a name='a' title="../../address.html">仓库管理</a>
-							</dd>
-							<dd>
-								<a name='a' title="../../address.html">人员管理</a>
-							</dd>
-						</dl>
-					</li>
-					<li class="layui-nav-item layui-nav-itemed">
-						<a>日志</a>
-						<dl class="layui-nav-child">
-							<dd>
-								<a name='a' title="../../address.html">订单日志</a>
-							</dd>
-							<dd>
-								<a name='a' title="../../address.html">登录日志</a>
-							</dd>
-							<dd>
-								<a name='a' title="../../address.html">异常日志</a>
-							</dd>
-						</dl>
-					</li>
-					<li class="layui-nav-item layui-nav-itemed">
-						<a>报表</a>
-						<dl class="layui-nav-child">
-							<dd>
-								<a name='a' title="../../address.html">销售报表</a>
-							</dd>
-							<dd>
-								<a name='a' title="../../address.html">进货报表</a>
-							</dd>
-						</dl>
-					</li>
+		<div style="top:60px;position: fixed;overflow-x: hidden;">
+			<ul class="layui-nav layui-nav-tree layui-nav-side" style="margin-top: 60px;border-radius: 0;">
+				<li class="layui-nav-item layui-nav-itemed">
+					<a>日常</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a name='a' title="../good/list.html">商品管理</a>
+						</dd>
+						<dd>
+							<a name='a' title="../../address.html">用户管理</a>
+						</dd>
+						<dd>
+							<a name='a' title="../../address.html">订单管理</a>
+						</dd>
+						<dd>
+							<a name='a' title="../../address.html">商家入驻申请</a>
+						</dd>
+						<dd>
+							<a name='a' title="../../address.html">评价管理</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a>基础</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a name='a' title="../../address.html">仓库管理</a>
+						</dd>
+						<dd>
+							<a name='a' title="../../address.html">人员管理</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a>日志</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a name='a' title="../../address.html">订单日志</a>
+						</dd>
+						<dd>
+							<a name='a' title="../../address.html">登录日志</a>
+						</dd>
+						<dd>
+							<a name='a' title="../../address.html">异常日志</a>
+						</dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item layui-nav-itemed">
+					<a>报表</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a name='a' title="../../address.html">销售报表</a>
+						</dd>
+						<dd>
+							<a name='a' title="../../address.html">进货报表</a>
+						</dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<div style="left: 200px;right:0;position: absolute;overflow-y: auto;">
+			<div class="layui-tab" lay-filter="demo" lay-allowClose="true">
+				<ul class="layui-tab-title">
 				</ul>
-			</div>
-			<div style="display: inline-block;width: 85%;vertical-align: top;float: right;margin-top: 60px;">
-				<div class="layui-tab" lay-filter="demo" lay-allowClose="true">
-					<ul class="layui-tab-title">
-					</ul>
-					<div class="layui-tab-content">
-					</div>
+				<div class="layui-tab-content">
 				</div>
 			</div>
 		</div>
@@ -110,7 +107,8 @@
 				var iframes = document.getElementsByName("iframe");
 				try {
 					for(var i = 0; i < iframes.length; i++)
-						iframes[i].height = iframes[i].contentWindow.document.documentElement.scrollHeight;
+						//iframes[i].height = iframes[i].contentWindow.document.documentElement.scrollHeight;
+						iframes[i].height = window.screen.height -320;
 				} catch(ex) {}
 			}
 			window.setInterval("reinitIframe()", 200);
@@ -125,7 +123,7 @@
 						//新增一个Tab项
 						element.tabAdd('demo', {
 							title: $(this).text(),
-							content: '<iframe name="iframe" src="' + this.title + '" frameborder="0" scrolling="no" style="width: 100%;"></iframe>'
+							content: '<iframe name="iframe" src="' + this.title + '" frameborder="0" style="width: 100%;"></iframe>'
 						});
 					},
 					tabDelete: function() {
