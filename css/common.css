@@ -1,4 +1,4 @@
-body {
+	body {
 	font-family: "微软雅黑";
 }
 
@@ -63,3 +63,39 @@ body {
 .width100 {
 	width: 100px;
 }
+
+.content-link {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+	margin-right: 5px;
+}
+
+.content-link:hover {
+	color: red;
+	text-decoration: none;
+}
+
+.myTable {
+	font-size: 12px;
+	width: 100%;
+}
+
+.myTable thead th {
+	text-align: center;
+	background: #F2F2F2;
+	padding: 10px 0;
+}
+
+.myTable tbody tr td {
+	text-align: center;
+	padding: 10px 0;
+	border-bottom: 1px #f1f1f1 solid;
+}
+
+.myTable tbody tr td:first-child {
+	text-align: left;
+}
+
+.myTable tbody tr td:first-child img {
+	padding-left: 10px;

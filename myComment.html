@@ -1,21 +1,94 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="asserts/address/css/bootstrap.css"/>
-		<link rel="stylesheet" type="text/css" href="css/common.css"/>
-		<link rel="stylesheet" type="text/css" href="asserts/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="asserts/address/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="asserts/layui/css/layui.css" />
 		<script src="asserts/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="asserts/raty/lib/jquery.raty.min.js" type="text/javascript" charset="utf-8"></script>
 		<title>个人信息</title>
 		<style type="text/css">
+
 		</style>
 	</head>
+
 	<body>
 		<div class="container-fluid iframe-offset-y">
-			
+			<table class="myTable">
+				<thead>
+					<th>商品名</th>
+					<th>评论等级</th>
+					<th>评论内容</th>
+					<th>评论时间</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<img src="img/56b16594Nb8807f03.jpg" />
+							<span>
+								<a class="content-link">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</a>
+							</span>
+						</td>
+						<td>
+							<div data-score="3" name="star"></div>
+						</td>
+						<td>挺好用的</td>
+						<td>2016-09-09<br/>22:09:09</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="img/56b16594Nb8807f03.jpg" />
+							<span>
+								<a class="content-link">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</a>
+							</span>
+						</td>
+						<td>
+							<div data-score="3" name="star"></div>
+						</td>
+						<td>挺好用的</td>
+						<td>2016-09-09<br/>22:09:09</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="img/56b16594Nb8807f03.jpg" />
+							<span>
+								<a class="content-link">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</a>
+							</span>
+						</td>
+						<td>
+							<div data-score="3" name="star"></div>
+						</td>
+						<td>挺好用的</td>
+						<td>2016-09-09<br/>22:09:09</td>
+					</tr>
+					<tr>
+						<td>
+							<img src="img/56b16594Nb8807f03.jpg" />
+							<span>
+								<a class="content-link">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</a>
+							</span>
+						</td>
+						<td>
+							<div data-score="3" name="star"></div>
+						</td>
+						<td>挺好用的</td>
+						<td>2016-09-09<br/>22:09:09</td>
+					</tr>
+
+				</tbody>
+			</table>
 		</div>
 		<script>
+			$("[name='star']").raty({
+				readOnly: true,
+				score: function() {
+					return $(this).attr('data-score');
+				}
+			});
 		</script>
 	</body>
+
 </html>

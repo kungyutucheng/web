@@ -10,90 +10,446 @@
 		<script src="asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 		<title>个人信息</title>
 		<style type="text/css">
-			.tab-div{
+			.tab-div {
+				display: inline-block;
 				margin: 10px 0;
 			}
-			.tab{
+			
+			.tab {
 				margin: 10px 20px;
 				font-size: 12px;
 				border-bottom: 2px #fff solid transparent;
 				cursor: pointer;
 			}
-			.tab-active{
+			
+			.tab-active {
 				color: red;
 				font-weight: bold;
 				cursor: pointer;
 				border-bottom: 2px red solid;
 			}
-			.tab:hover{
+			
+			.tab:hover {
 				color: red;
 				cursor: pointer;
 				border-bottom: 2px red solid;
 			}
-			.head{
-				background: #ddd;
+			.filter{
+				display: inline-block;
+				float: right;
 			}
-			.head .th{
+			
+			.head {
+				background: #F5F5F5;
+				color: #666;
+			}
+			
+			.head .th {
+				display: inline-block;
+				height: 100%;
+				padding: 10px 0;
+				text-align: center;
+			}
+			
+			.head .good {
+				width: 58%;
+			}
+			
+			.head .receiver {
+				width: 10%;
+			}
+			
+			.head .value {
+				width: 10%;
+			}
+			
+			.head .status {
+				width: 10%;
+			}
+			
+			.head .oper {
+				width: 10%;
+			}
+			
+			.body{
+				width: 100%;
+				margin: 10px 0;
+				
+				font-size: 12px;
+				
+			}
+			.body .order-item{
+				border-left: 1px #ddd solid;
+				border-bottom: 1px #ddd solid;
+				border-right: 1px #ddd solid;
+				width: 100%;
+				display: table;
+				margin: 20px 0;
+			}
+			
+			.body .order-item .title{
+				border-top: 1px #ddd solid;
+				border-left: 1px #ddd solid;
+				border-right: 1px #ddd solid;
+				background: #F5F5F5;
+				padding: 10px;
+				width: 100%;
+				display: table-caption; 
+				color: #999;
+			}
+			.body .order-item .title div:first-child{
 				display: inline-block;
 			}
-			.head .good{
-				width:59%;
+			
+			.body .order-item .title div:nth-child(2){
+				display: inline-block;
+				float: right;
+				cursor: pointer;
 			}
-			.head .receiver{
-				width:10%;
+			
+			.body .order-item .title .order-no{
+				color:#000000;
 			}
-			.head .value{
-				width: 10%;
+			
+			.body .order-item .content{
+				width: 100%;
+				display: table-row;
+				text-align: center;
 			}
-			.head .status{
-				width: 10%;
+			.body .order-item .content .good,
+			.body .order-item .content .receiver,
+			.body .order-item .content .value,
+			.body .order-item .content .status,
+			.body .order-item .content .oper{
+				display: table-cell;
+				vertical-align: middle;
 			}
-			.head .oper{
-				width: 10%;
+			
+			.body .order-item .content .good{
+				width: 58%;
+				border-right: 1px #ddd solid;
 			}
-			.head .good .time{
+			.body .order-item .content .good .good-item {
+				width: 100%;
 				text-align: left;
+				border-bottom: 1px #ddd solid;
 			}
-			.head .good .detail{
-				margin-right: 40px;
+			.body .order-item .content .good .good-item:last-child{
+				border-bottom: none;	
 			}
+			.body .order-item .content .good .good-item .img{
+				width: 13%;
+				padding-left: 10px;
+				display: inline-block;
+			}
+			.body .order-item .content .good .good-item .good-name{
+				width: 60%;
+				padding: 0px 10px;
+				display: inline-block;
+			}
+			.body .order-item .content .good .good-item .good-num{
+				width: 10%;
+				padding: 0px 10px;
+				display: inline-block;
+				color: #999;
+			}
+			.body .order-item .content .good .good-item .good-oper{
+				width: 15%;
+				display: inline-block;
+				color: #999;
+			}
+			.body .order-item .content .receiver {
+				width: 10%;
+				border-right: 1px #ddd solid;
+			}
+			
+			.body .order-item .content .value {
+				width: 10%;
+				border-right: 1px #ddd solid;
+				color: #999;
+				text-align: center;
+			}
+			.body .order-item .content .value .money{
+				margin-bottom: 3px;
+			}
+			.body .order-item .content .value .pay-way{
+				margin-top: 3px;
+			}
+			.body .order-item .content .status {
+				width: 10%;
+				border-right: 1px #ddd solid;
+			}
+			
+			.body .order-item .content .oper {
+				width: 10%;
+			}
+			
 		</style>
 	</head>
 
 	<body>
 		<div class="container-fluid iframe-offset-y">
-			<div class="tab-div">
-				<span class="tab tab-active">全部订单</span>
-				<span class="tab">待付款</span>
-				<span class="tab">待收货</span>
-				<span class="tab">待评价</span>
-			</div>
 			<div>
-				<div class="head">
-					<div class="good">
-						<div class="time">
-							<select></select>
-						</div>
-						<div class="detail">
-							
+				<div class="tab-div">
+					<span class="tab tab-active">全部订单</span>
+					<span class="tab">待付款</span>
+					<span class="tab">待收货</span>
+					<span class="tab">待评价</span>
+				</div>
+				<div class="filter">
+					<div class="layui-form">
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<div class="layui-inline">
+									<select>
+										<option>三个月内订单</option>
+										<option>近一年订单</option>
+										<option>2015年订单</option>
+										<option>2014年订单</option>
+										<option>2013年订单</option>
+										<option>2013年之前订单</option>
+									</select>
+								</div>
+								<div class="layui-inline">
+									<select>
+										<option>全部</option>
+										<option>等待付款</option>
+										<option>等待收货</option>
+										<option>已完成</option>
+										<option>已取消</option>
+									</select>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="receiver">
+				</div>
+			</div>
+			<div style="clear: both;">
+				<div class="head">
+					<div class="good th">
+						订单详情
+					</div>
+					<div class="receiver th">
 						收货人
 					</div>
-					<div class="value">
+					<div class="value th">
 						金额
 					</div>
-					<div class="status">
+					<div class="status th">
 						状态
 					</div>
-					<div class="oper">
+					<div class="oper th">
 						操作
+					</div>
+				</div>
+				<div class="body">
+					<div class="order-item">
+						<div class="title">
+							<div>
+								2016-09-23&nbsp;&nbsp;22:22:22&nbsp;&nbsp;&nbsp;&nbsp;订单号：<span class="order-no">38204830483</span>
+							</div>
+							<div>
+								<img src="img/delete.ico"/>
+							</div>
+						</div>
+						<div class="content">
+							<div class="good">
+								<div class="good-item">
+									<div class="img">
+										<img src="img/56b16594Nb8807f03.jpg"/>
+									</div>
+									<div class="good-name">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</div>
+									<div class="good-num">X1</div>
+									<div class="good-oper">
+										<a class="extra">返修/退换货</a>
+									</div>
+								</div>
+								<div class="good-item">
+									<div class="img">
+										<img src="img/56b16594Nb8807f03.jpg"/>
+									</div>
+									<div class="good-name">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</div>
+									<div class="good-num">X1</div>
+									<div class="good-oper">
+										<a class="extra">返修/退换货</a>
+									</div>
+								</div>
+							</div>
+							<div class="receiver">
+								翁勇城
+							</div>
+							<div class="value">
+								<div class="money">总额：￥123</div>
+								<hr style="margin: 0px 6px;"/>
+								<div class="pay-way">在线支付</div>
+							</div>
+							<div class="status">
+								已取消
+							</div>
+							<div class="oper">
+								<a class="extra" href="orderDetail.html" target="_blank">订单详情</a>
+							</div>
+						</div>
+					</div>
+					<div class="order-item">
+						<div class="title">
+							<div>
+								2016-09-23&nbsp;&nbsp;22:22:22&nbsp;&nbsp;&nbsp;&nbsp;订单号：<span class="order-no">38204830483</span>
+							</div>
+							<div>
+								<img src="img/delete.ico"/>
+							</div>
+						</div>
+						<div class="content">
+							<div class="good">
+								<div class="good-item">
+									<div class="img">
+										<img src="img/56b16594Nb8807f03.jpg"/>
+									</div>
+									<div class="good-name">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</div>
+									<div class="good-num">X1</div>
+									<div class="good-oper">
+										<a class="extra">返修/退换货</a>
+									</div>
+								</div>
+								<div class="good-item">
+									<div class="img">
+										<img src="img/56b16594Nb8807f03.jpg"/>
+									</div>
+									<div class="good-name">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</div>
+									<div class="good-num">X1</div>
+									<div class="good-oper">
+										<a class="extra">返修/退换货</a>
+									</div>
+								</div>
+							</div>
+							<div class="receiver">
+								翁勇城
+							</div>
+							<div class="value">
+								<div class="money">总额：￥123</div>
+								<hr style="margin: 0px 6px;"/>
+								<div class="pay-way">在线支付</div>
+							</div>
+							<div class="status">
+								已取消
+							</div>
+							<div class="oper">
+								<a class="extra">订单详情</a>
+							</div>
+						</div>
+					</div>
+					<div class="order-item">
+						<div class="title">
+							<div>
+								2016-09-23&nbsp;&nbsp;22:22:22&nbsp;&nbsp;&nbsp;&nbsp;订单号：<span class="order-no">38204830483</span>
+							</div>
+							<div>
+								<img src="img/delete.ico"/>
+							</div>
+						</div>
+						<div class="content">
+							<div class="good">
+								<div class="good-item">
+									<div class="img">
+										<img src="img/56b16594Nb8807f03.jpg"/>
+									</div>
+									<div class="good-name">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</div>
+									<div class="good-num">X1</div>
+									<div class="good-oper">
+										<a class="extra">返修/退换货</a>
+									</div>
+								</div>
+								<div class="good-item">
+									<div class="img">
+										<img src="img/56b16594Nb8807f03.jpg"/>
+									</div>
+									<div class="good-name">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</div>
+									<div class="good-num">X1</div>
+									<div class="good-oper">
+										<a class="extra">返修/退换货</a>
+									</div>
+								</div>
+							</div>
+							<div class="receiver">
+								翁勇城
+							</div>
+							<div class="value">
+								<div class="money">总额：￥123</div>
+								<hr style="margin: 0px 6px;"/>
+								<div class="pay-way">在线支付</div>
+							</div>
+							<div class="status">
+								已取消
+							</div>
+							<div class="oper">
+								<a class="extra">订单详情</a>
+							</div>
+						</div>
+					</div>
+					<div class="order-item">
+						<div class="title">
+							<div>
+								2016-09-23&nbsp;&nbsp;22:22:22&nbsp;&nbsp;&nbsp;&nbsp;订单号：<span class="order-no">38204830483</span>
+							</div>
+							<div>
+								<img src="img/delete.ico"/>
+							</div>
+						</div>
+						<div class="content">
+							<div class="good">
+								<div class="good-item">
+									<div class="img">
+										<img src="img/56b16594Nb8807f03.jpg"/>
+									</div>
+									<div class="good-name">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</div>
+									<div class="good-num">X1</div>
+									<div class="good-oper">
+										<a class="extra">返修/退换货</a>
+									</div>
+								</div>
+								<div class="good-item">
+									<div class="img">
+										<img src="img/56b16594Nb8807f03.jpg"/>
+									</div>
+									<div class="good-name">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</div>
+									<div class="good-num">X1</div>
+									<div class="good-oper">
+										<a class="extra">返修/退换货</a>
+									</div>
+								</div>
+							</div>
+							<div class="receiver">
+								翁勇城
+							</div>
+							<div class="value">
+								<div class="money">总额：￥123</div>
+								<hr style="margin: 0px 6px;"/>
+								<div class="pay-way">在线支付</div>
+							</div>
+							<div class="status">
+								已取消
+							</div>
+							<div class="oper">
+								<a class="extra">订单详情</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script>
+			//Demo
+			layui.use('form', function() {
+				var form = layui.form();
+
+				//监听提交
+				form.on('submit(formDemo)', function(data) {
+					layer.msg(JSON.stringify(data.field));
+					return false;
+				});
+			});
+			
 		</script>
 	</body>
 

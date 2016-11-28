@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>订单详情</title>
+		<link rel="stylesheet" href="asserts/bootstrap/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<style>
+			body{
+				padding-top: 100px;
+				background: #F5F5F5;
+			}
+			.block{
+				clear: both;
+				width: 100%;
+				background: #fff;
+				border-top: 3px #eee solid;
+				border-bottom: 1px #eee solid;
+				border-left: 1px #eee solid;
+				border-right: 1px #eee solid;
+				text-align: center;
+				margin: 30px 0px;
+			}
+			.order{
+				background: #fff;
+				height: 300px;
+			}
+			.order-info{
+				display: inline-block;
+				float: left;
+				width: 30%;
+				text-align: center;
+				padding-top: 40px;
+				height: 100%;
+				border-right: 1px #f1f1f1 solid;
+				color: #999;
+			}
+			.order-info .order-no{
+				padding: 20px 0;
+			}
+			.order-info .curr-status{
+				font-size: xx-large;
+				color: #71B247;
+			}
+			.order-process{
+				width: 69%;
+				display: inline-block;
+				float: right;
+				text-align: center;
+			}
+			.order .node{
+				display: inline-block;
+				padding-top: 70px;
+				width: 70px;
+			}
+			.order .process{
+				display: inline-block;
+				padding-top: 70px;
+				width: 123px;
+				padding-bottom: 80px;
+			}
+			.order .node .icon{
+				padding: 0 11px;
+				width: 65px;
+				height: 43px;
+			}
+			.icon-submit,
+			.icon-pay,
+			.icon-out,
+			.icon-finish{
+				background: url(img/node-icons.png) no-repeat;
+				display: block;
+				width: 43px;
+				height: 43px;
+			}
+			.icon-submit{
+				background-position: 0px -108px;
+			}
+			.icon-pay{
+				background-position: -52px -108px;
+			}
+			.icon-out{
+				background-position: -270px -108px;
+			}
+			.icon-finish{
+				background-position: 0px -54px;
+			}
+			.icon-process{
+				background: url(img/proce-icons.png) no-repeat;
+				background-position: 0px -38px;
+				display: block;
+				width: 123px;
+				height: 19px;
+			}
+			.order .node .txt{
+				width: 70px;
+				padding: 5px 0;
+			}
+			.order .node .time{
+				width: 70px;
+				line-height: 20px;
+				padding: 5px 0;
+				font-size: small;
+			}
+			.order-bottom{
+				width: 100%;
+				color: #999;
+				font-size: 12px;
+				margin-top: 70px;
+			}
+			.order-bottom .num{
+				color: red;
+			}
+			.dl{
+				display: inline-block;
+				width: 33%;
+				border-right: 1px #f1f1f1 solid;
+				padding-left: 20px;
+				padding-top: 20px;
+				height: 170px;
+			}
+			.dl:last-child{
+				border: none;
+				
+			}
+			.dl .dt{
+				font-size: large;
+				text-align: left;
+			}
+			.dl .dd{
+				width: 100%;
+			}
+			.dl .dd .item{
+				padding: 3px 0;
+				display: block;
+				line-height: 30px;
+			}
+			.dl .dd .dlabel{
+				text-align: left;
+				width: 80px;
+				float: left;
+			}
+			.dl .dd .info{
+				text-align: left;
+				width: 200px;
+				float: left;
+			}
+			.good-list{
+				width: 100%;
+			}
+			
+			.balance{
+				width: 100%;
+				padding: 30px 30px 30px 0px;
+				float: right;
+				text-align: right;
+				background: #fff;
+			}
+			.balance .value{
+				font-size: x-large;
+				font-weight: bold;
+				color: #D9534F;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="block">
+				<div class="order">
+					<div class="order-info">
+						<div class="order-no">订单号：324354</div>
+						<div class="curr-status">完成</div>
+					</div>
+					<div class="order-process">
+						<div class="node">
+							<div class="icon">
+								<i class="icon-submit"></i>
+							</div>
+							<div class="txt">
+								提交订单
+							</div>
+							<div class="time">
+								2016-09-09<br/>22:22:22
+							</div>
+						</div>
+						<div class="process">
+							<i class="icon-process"></i>
+						</div>
+						<div class="node">
+							<div class="icon">
+								<i class="icon-pay"></i>
+							</div>
+							<div class="txt">
+								付款成功
+							</div>
+							<div class="time">
+								2016-09-09<br/>22:22:22
+							</div>
+						</div>
+						<div class="process">
+							<i class="icon-process"></i>
+						</div>
+						<div class="node">
+							<div class="icon">
+								<i class="icon-out"></i>
+							</div>
+							<div class="txt">
+								商品出库
+							</div>
+							<div class="time">
+								2016-09-09<br/>22:22:22
+							</div>
+						</div>
+						<div class="process">
+							<i class="icon-process"></i>
+						</div>
+						<div class="node">
+							<div class="icon">
+								<i class="icon-finish"></i>
+							</div>
+							<div class="txt">
+								完成
+							</div>
+							<div class="time">
+								2016-09-09<br/>22:22:22
+							</div>
+						</div>
+						<div class="order-bottom">会员成长值：<span class="num">+14</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="block">
+				<div class="dl">
+					<div class="dt">收货人信息</div>
+					<div class="dd">
+						<div class="item">
+							<span class="dlabel">收货人：</span>
+							<div class="info">翁勇城</div>
+						</div>
+						<div class="item">
+							<span class="dlabel">地址 ：</span>
+							<div class="info">广东省佛山市南海区狮山镇华南师范大学南海校区</div>
+						</div>
+						<div class="item">
+							<span class="dlabel">手机号码：</span>
+							<div class="info">156****0518</div>
+						</div>
+					</div>
+				</div>
+				<div class="dl">
+					<div class="dt">付款信息</div>
+					<div class="dd">
+						<div class="item">
+							<span class="dlabel">付款方式 ：</span>
+							<div class="info">在线支付 </div>
+						</div>
+						<div class="item">
+							<span class="dlabel">付款时间 ：</span>
+							<div class="info">2016-08-09&nbsp;&nbsp;22:22:22</div>
+						</div>
+						<div class="item">
+							<span class="dlabel">商品总额：</span>
+							<div class="info">212</div>
+						</div>
+					</div>
+				</div>
+				<div class="dl">
+					<div class="dt">发票信息</div>
+					<div class="dd">
+						<div class="item">
+							<span class="dlabel">发票抬头：</span>
+							<div class="info">翁勇城</div>
+						</div>
+						<div class="item">
+							<span class="dlabel">发票内容：</span>
+							<div class="info">广东省佛山市南海区狮山镇华南师范大学南海校区</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="block">
+				<div class="good-list">
+					<table class="myTable">
+						<thead>
+							<th>商品</th>
+							<th>商品编号</th>
+							<th>价格</th>
+							<th>数量</th>
+							<th>操作</th>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<img src="img/56b16594Nb8807f03.jpg" />
+									<span>
+										<a class="content-link">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</a>
+									</span>
+								</td>
+								<td>4294738</td>
+								<td>￥429</td>
+								<td>1</td>
+								<td>
+									<a class="extra">返修/退换货</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/56b16594Nb8807f03.jpg" />
+									<span>
+										<a class="content-link">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</a>
+									</span>
+								</td>
+								<td>4294738</td>
+								<td>￥429</td>
+								<td>1</td>
+								<td>
+									<a class="extra">返修/退换货</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/56b16594Nb8807f03.jpg" />
+									<span>
+										<a class="content-link">闪迪（SanDisk）至尊高速移动MicroSDXC UHS-I存储卡 TF卡 64GB Class10 读速</a>
+									</span>
+								</td>
+								<td>4294738</td>
+								<td>￥429</td>
+								<td>1</td>
+								<td>
+									<a class="extra">返修/退换货</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="balance">
+					商品总额：<span class="value">￥435</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
