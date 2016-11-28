@@ -5,8 +5,10 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="../../asserts/layui/css/layui.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../asserts/bootstrap/bootstrap.min.css" />
 		<script src="../../asserts/jquery/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../asserts/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../asserts/bootstrap/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 		<title>商品管理</title>
 		<style type="text/css">
 			.search-div {
@@ -38,29 +40,54 @@
 				margin: 10px auto;
 				text-align: center;
 			}
-			.result-div{
+			
+			.tool-bar {
+				width: 99%;
+				border: 1px #ddd solid;
+				padding: 10px 10px;
+				margin: 10px 0;
+			}
+			
+			.result-div {
 				width: 99%;
 				border: 1px #ddd solid;
 				background: #fff;
 				margin: 10px 0;
 			}
-			.table{
+			
+			.table {
 				width: 100%;
 				border: 1px #f1f1f1 solid;
 				text-align: center;
-				border-width:1px 0px 0px 1px;
+				border-width: 1px 0px 0px 1px;
 			}
-			.table thead th{
+			
+			.table thead th {
 				background: #f1f1f1;
 				text-align: center;
 				padding: 5px 0;
 			}
-			.table tbody tr td{
-				border:solid #ddd; 
-				border-width:0px 1px 1px 0px;
-				padding:10px 0px;
+			
+			.table tbody tr td {
+				border: solid #ddd;
+				border-width: 0px 1px 1px 0px;
+				padding: 10px 0px;
 			}
-			.table tbody tr:hover{
+			
+			.table tbody tr:hover {
+				background: #ddd;
+			}
+			
+			.inner-table {
+				width: 100%;
+				border: 1px #f1f1f1 dashed;
+				border-width: 1px 0px 0px 1px;
+			}
+			
+			.inner-table tbody tr td {
+				border: 1px dashed #ddd;
+				padding: 10px 0px;
+				border-width: 0px 1px 1px 0px;
 			}
 		</style>
 	</head>
@@ -77,37 +104,71 @@
 				<form class="layui-form" id="searchForm">
 					<div class="layui-form-item">
 						<div class="layui-inline">
-							<div class="layui-form-label">名称</div>
+							<div class="layui-form-label width100">名称</div>
 							<div class="layui-input-block">
-								<input type="text" name="name" id="gname" class="layui-input" />
+								<input type="text" name="name" class="layui-input" />
 							</div>
 						</div>
 						<div class="layui-inline">
-							<div class="layui-form-label">编号</div>
+							<div class="layui-form-label width100">编号</div>
 							<div class="layui-input-block">
-								<input type="text" name="name" id="gname" class="layui-input" />
+								<input type="text" name="name" class="layui-input" />
 							</div>
 						</div>
 						<div class="layui-inline">
-							<div class="layui-form-label">价格</div>
+							<div class="layui-form-label width100">价格</div>
 							<div class="layui-input-block">
-								<input type="text" name="name" id="gname" class="layui-input" />
+								<input type="text" name="name" class="layui-input" />
+							</div>
+						</div>
+					</div>
+					<div id="moreFilter" style="display: none;">
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<div class="layui-form-label width100">
+									品牌
+								</div>
+								<div class="layui-input-block">
+									<input type="text" name="brand" class="layui-input" />
+								</div>
+							</div>
+							<div class="layui-inline">
+								<div class="layui-form-label width100">
+									上架时间
+								</div>
+								<div class="layui-input-block">
+									<input class="layui-input" placeholder="开始时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<div class="layui-form-label width100">
+									-
+								</div>
+								<div class="layui-input-block">
+									<input class="layui-input" placeholder="结束时间" onclick="layui.laydate({elem: this, istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+								</div>
 							</div>
 						</div>
 					</div>
 					<div class="layui-form-item">
 						<div class="layui-input-block">
-							<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+							<button class="layui-btn" lay-submit lay-filter="formDemo">查询</button>
 							<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							<button type="reset" class="layui-btn layui-btn-primary" onclick="showMoreFilter(this);">更多条件</button>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
+		<div class="tool-bar">
+			<button class="layui-btn" onclick="addGood();">上架新商品</button>
+			<button class="layui-btn" onclick="launchGoods();">上架商品</button>
+			<button class="layui-btn" onclick="removeGoods();">下架商品</button>
+		</div>
 		<div class="result-div">
 			<table class="table">
 				<thead>
-					<th></th>
+					<th><input type="checkbox" id="selectAll" /></th>
 					<th>序号</th>
 					<th>名称</th>
 					<th>编号</th>
@@ -119,7 +180,68 @@
 				<tbody>
 					<tr>
 						<td>
-							<input type="checkbox" />
+							<input type="checkbox" name="selectItem" onchange="hasSelectAll()" />
+						</td>
+						<td>1</td>
+						<td>某个不知名的商品名</td>
+						<td>42423323</td>
+						<td>1</td>
+						<td>1</td>
+						<td>2016-09-09&nbsp;&nbsp;22:33:33</td>
+						<td>
+							<span>
+								<a class="extra" onclick="showGoodDetail(this);">详情</a>
+							</span>
+							<span>
+								<a class="extra" onclick="showUpdateModal();">修改</a>
+							</span>
+							<span>
+								<a class="extra" onclick="removeGood()">下架</a>
+							</span>
+						</td>
+					</tr>
+					<tr id="detailTr" style="display: none;">
+						<td colspan="8">
+							<div>
+								<table class="inner-table">
+									<tbody>
+										<tr>
+											<td rowspan="2" colspan="2">
+												<img src="../../img/56b16594Nb8807f03.jpg" />
+											</td>
+											<td>品牌</td>
+											<td>闪迪</td>
+											<td>编号</td>
+											<td>683263</td>
+											<td>毛重</td>
+											<td>0.1kg</td>
+										</tr>
+										<tr>
+											<td>评价总数</td>
+											<td>324343</td>
+											<td>库存</td>
+											<td>683263</td>
+											<td>净重</td>
+											<td>0.1kg</td>
+										</tr>
+										<tr>
+											<td>品牌</td>
+											<td>闪迪</td>
+											<td>品牌</td>
+											<td>闪迪</td>
+											<td>编号</td>
+											<td>683263</td>
+											<td>毛重</td>
+											<td>0.1kg</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" name="selectItem" onchange="hasSelectAll()" />
 						</td>
 						<td>1</td>
 						<td>某个不知名的商品名</td>
@@ -135,13 +257,13 @@
 								<a class="extra">修改</a>
 							</span>
 							<span>
-								<a class="extra">删除</a>
+								<a class="extra">下架</a>
 							</span>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="checkbox" />
+							<input type="checkbox" name="selectItem" onchange="hasSelectAll()" />
 						</td>
 						<td>1</td>
 						<td>某个不知名的商品名</td>
@@ -157,48 +279,251 @@
 								<a class="extra">修改</a>
 							</span>
 							<span>
-								<a class="extra">删除</a>
-							</span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="checkbox" />
-						</td>
-						<td>1</td>
-						<td>某个不知名的商品名</td>
-						<td>42423323</td>
-						<td>1</td>
-						<td>1</td>
-						<td>2016-09-09&nbsp;&nbsp;22:33:33</td>
-						<td>
-							<span>
-								<a class="extra">详情</a>
-							</span>
-							<span>
-								<a class="extra">修改</a>
-							</span>
-							<span>
-								<a class="extra">删除</a>
+								<a class="extra">下架</a>
 							</span>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+			<div id="page" style="width:100%;text-align: center;"></div>
+		</div>
+		<div class="modal fade" id="addGoodModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel">上架商品</h4>
+					</div>
+					<div class="modal-body" style="text-align: center;">
+						<form class="layui-form" id="addGoodForm">
+							<div class="layui-form-item">
+								<div class="layui-inline">
+									<div class="layui-form-label">名称</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-inline">
+									<div class="layui-form-label">编号</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-inline">
+									<div class="layui-form-label">价格</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<div class="layui-inline">
+									<div class="layui-form-label">品牌</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-inline">
+									<div class="layui-form-label">毛重</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-inline">
+									<div class="layui-form-label">净重</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<div class="layui-input-block">
+									<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="updateGoodModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel">修改商品</h4>
+					</div>
+					<div class="modal-body" style="text-align: center;">
+						<form class="layui-form" id="updateGoodForm">
+							<div class="layui-form-item">
+								<div class="layui-inline">
+									<div class="layui-form-label">名称</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-inline">
+									<div class="layui-form-label">编号</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-inline">
+									<div class="layui-form-label">价格</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<div class="layui-inline">
+									<div class="layui-form-label">品牌</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-inline">
+									<div class="layui-form-label">毛重</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+								<div class="layui-inline">
+									<div class="layui-form-label">净重</div>
+									<div class="layui-input-block">
+										<input type="text" name="name" id="gname" class="layui-input" />
+									</div>
+								</div>
+							</div>
+							<div class="layui-form-item">
+								<div class="layui-input-block">
+									<button class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="removeGoodModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel">下架商品</h4>
+					</div>
+					<div class="modal-body" style="text-align: center;">
+						确定下架商品<span style="color: #D9534F;padding-left: 10px;font-size: 16px;">随便啦</span>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary">确定</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
 		</div>
 		<script type="text/javascript">
 			var flag = true;
-			$(".icon").on("click",function(){
-				if(flag){
-					$("#iconSwitch").text("&#xe61a;");
+			$(".icon").on("click", function() {
+				if(flag) {
+					$(this).html('<i class="layui-icon" id="iconSwitch">&#xe61a;</i>');
 					flag = false;
 					$(".filter").slideUp();
-				}else{
-					$("#iconSwitch").text("&#xe619;");
+				} else {
+					$(this).html('<i class="layui-icon" id="iconSwitch">&#xe619;</i>')
 					flag = true;
 					$(".filter").slideDown();
 				}
 			});
+
+			$("#selectAll").on("change", function() {
+				if($(this).is(":checked")) {
+					$("input[name='selectItem']").each(function() {
+						$(this).prop("checked", true);
+					});
+				} else {
+					$("input[name='selectItem']").each(function() {
+						$(this).prop("checked", false);
+					});
+				}
+			});
+
+			function hasSelectAll() {
+				var hasSelectAll = true;
+				$("input[name='selectItem']").each(function() {
+					if(!$(this).is(":checked")) {
+						hasSelectAll = false;
+					}
+				});
+				if(hasSelectAll) {
+					$("#selectAll").prop("checked", true);
+				} else {
+					$("#selectAll").prop("checked", false);
+				}
+			}
+
+			function showGoodDetail(obj) {
+				$(obj).parent().parent().parent().next().slideToggle(500);
+			}
+
+			function showUpdateModal() {
+				$("#updateGoodModal").modal("show");
+			}
+
+			function removeGood() {
+				$("#removeGoodModal").modal("show");
+			}
+
+			//上架新商品
+			function addGood() {
+				$("#addGoodModal").modal("show");
+			}
+
+			//上架商品
+			function launchGoods() {
+				var ids = "";
+				$("input[name='selectItem']").each(function() {
+					if($(this).is(":checked")) {
+						ids += $(this).next().text() + ",";
+					}
+				});
+				ids = ids.substr(AnimationEvent, ids.length - 1);
+				console.log(ids);
+			}
+
+			//下架商品
+			function removeGoods() {
+				var ids = "";
+				$("input[name='selectItem']").each(function() {
+					if($(this).is(":checked")) {
+						ids += $(this).next().text() + ",";
+					}
+				});
+				ids = ids.substr(AnimationEvent, ids.length - 1);
+				console.log(ids);
+			}
+			
+			//显示更多筛选条件
+			function showMoreFilter(obj){
+				$(obj).text($(obj).text() == "更多条件"?"收起":"更多条件");
+				$("#moreFilter").slideToggle();
+			}
+			$(function() {
+				layui.use(['laypage', 'layer'], function() {
+					var laypage = layui.laypage;
+					laypage({
+						cont: 'page', //id
+						pages: 100, //总页数
+						curr: 1, //当前页
+						groups: 5, //连续显示分页数
+						jump: function(obj, first) {}
+					});
+				});
+
+				layui.use('laydate', function() {
+					var laydate = layui.laydate;
+				});
+			})
 		</script>
 	</body>
 
