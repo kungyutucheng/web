@@ -23,13 +23,13 @@
 			</div>
 			<ul class="layui-nav" style="border-radius: 0;display: inline;float: right;">
 				<li class="layui-nav-item">
-					<a href="">admin</a>
+					<a>admin</a>
 				</li>
 				<li class="layui-nav-item">
-					<a href="">设置</a>
+					<a id="setting" title="../user/setting.html">设置</a>
 				</li>
 				<li class="layui-nav-item">
-					<a href="">退出</a>
+					<a onclick="logout();">退出</a>
 				</li>
 			</ul>
 		</div>
@@ -93,22 +93,22 @@
 				</li>
 			</ul>
 		</div>
-		<div style="left: 200px;right:0;position: absolute;overflow-y: auto;">
+		<div style="left: 210px;right:0;position: absolute;overflow-y: auto;">
 			<div class="layui-tab" lay-filter="demo" lay-allowClose="true">
-				<ul class="layui-tab-title">
+				<ul id="tabTitle" class="layui-tab-title">
 				</ul>
-				<div class="layui-tab-content">
+				<div id="tabContainers" class="layui-tab-content">
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
-			//调整iframe高度，使其高度自适应内容
+			//调整iframe高度
 			function reinitIframe() {
 				var iframes = document.getElementsByName("iframe");
 				try {
 					for(var i = 0; i < iframes.length; i++)
 						//iframes[i].height = iframes[i].contentWindow.document.documentElement.scrollHeight;
-						iframes[i].height = window.screen.height -320;
+						iframes[i].height = window.screen.height -280;
 				} catch(ex) {}
 			}
 			window.setInterval("reinitIframe()", 200);
@@ -122,17 +122,24 @@
 					tabAdd: function() {
 						//新增一个Tab项
 						element.tabAdd('demo', {
-							title: $(this).text(),
+							title: $(this).text() + "<i class='layui-icon layui-unselect layui-tab-close'>&#x1006;</i>",
 							content: '<iframe name="iframe" src="' + this.title + '" frameborder="0" style="width: 100%;"></iframe>'
 						});
+						//增加点击关闭事件
+						var r = $("#tabTitle").find("li");
+						//每次新打开tab都是最后一个，所以只对最后一个tab添加点击关闭事件
+						r.eq(r.length - 1).children("i.layui-tab-close").on("click", function() {
+							element.tabDelete("demo", $(this).parent("li").index());
+						}), element.tabChange("demo", r.length - 1);
+						element.init();
 					},
-					tabDelete: function() {
+					tabDelete: function(index) {
 						//删除指定Tab项
-						element.tabDelete('demo', 2); //删除第3项（注意序号是从0开始计算）
+						element.tabDelete('demo', index); //删除（注意序号是从0开始计算）
 					},
 					tabChange: function(index) {
 						//切换到指定Tab项
-						element.tabChange('demo', index); //切换到第2项（注意序号是从0开始计算）
+						element.tabChange('demo', index); //切换（注意序号是从0开始计算）
 					}
 				};
 
@@ -140,7 +147,20 @@
 					var title = $(this).text();
 					var tabs = $(".layui-tab-title").children();
 					for(var i = 0; i < tabs.length; i++) {
-						if($(tabs[i]).text() == title) {
+						if($(tabs[i]).html().substr(0,$(tabs[i]).html().indexOf("i")-1) == title) {
+							element.tabChange('demo', i);
+							return;
+						}
+					}
+					active["tabAdd"].call(this);
+					active.tabChange($(".layui-tab-title").children().length - 1);
+				});
+				
+				$("#setting").on("click",function(){
+					var title = $(this).text();
+					var tabs = $(".layui-tab-title").children();
+					for(var i = 0; i < tabs.length; i++) {
+						if($(tabs[i]).html().substr(0,$(tabs[i]).html().indexOf("i")-1) == title) {
 							element.tabChange('demo', i);
 							return;
 						}
@@ -149,6 +169,7 @@
 					active.tabChange($(".layui-tab-title").children().length - 1);
 				})
 			});
+			
 		</script>
 	</body>
 
