@@ -46,6 +46,9 @@
 							<dd>
 								<a onclick="changePage(5);">我的级别</a>
 							</dd>
+							<dd>
+								<a onclick="changePage(6);">返修/退换货记录</a>
+							</dd>
 						</dl>
 					</li>
 				</ul>
@@ -67,6 +70,8 @@
 					url = "myComment.html";
 				}else if(index == 5){
 					url = "myRank.html";
+				}else if(index == 6){
+					url = "redo.html";
 				}
 				$("#iframe").attr("src", url);
 				reinitIframe();
