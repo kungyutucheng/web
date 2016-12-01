@@ -46,6 +46,11 @@
 							<dd>
 								<a onclick="changePage(5);">我的级别</a>
 							</dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item layui-nav-itemed">
+						<a>客户服务</a>
+						<dl class="layui-nav-child">
 							<dd>
 								<a onclick="changePage(6);">返修/退换货记录</a>
 							</dd>
@@ -71,7 +76,7 @@
 				}else if(index == 5){
 					url = "myRank.html";
 				}else if(index == 6){
-					url = "redo.html";
+					url = "returnOrExchangeList.html";
 				}
 				$("#iframe").attr("src", url);
 				reinitIframe();
